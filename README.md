@@ -6,7 +6,7 @@
 
 A lightweight dropdown banner for iOS 7+.
 
-![Example](Example/Demo.gif)
+![Example](https://raw.githubusercontent.com/bryx-inc/BRYXBanner/master/Example/Demo.gif)
 
 ## Usage
 
