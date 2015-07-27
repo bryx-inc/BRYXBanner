@@ -14,7 +14,7 @@ banner.dismissesOnTap = true
 banner.show(duration: 3.0)
 ```
 
-If you want the banner to persist until you can `.dismiss()`, leave the argument out of the call to `.show()`
+If you want the banner to persist until you call `.dismiss()`, leave the argument out of the call to `.show()`
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
