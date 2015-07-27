@@ -4,6 +4,10 @@
 [![License](https://img.shields.io/cocoapods/l/BRYXBanner.svg?style=flat)](http://cocoapods.org/pods/BRYXBanner)
 [![Platform](https://img.shields.io/cocoapods/p/BRYXBanner.svg?style=flat)](http://cocoapods.org/pods/BRYXBanner)
 
+A lightweight dropdown banner for iOS 7+.
+
+![Example](Example/Demo.gif)
+
 ## Usage
 
 Create a banner using the designated initializer.
