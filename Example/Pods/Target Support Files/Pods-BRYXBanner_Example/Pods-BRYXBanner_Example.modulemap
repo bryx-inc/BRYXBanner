@@ -1,0 +1,6 @@
+framework module Pods_BRYXBanner_Example {
+  umbrella header "Pods-BRYXBanner_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
