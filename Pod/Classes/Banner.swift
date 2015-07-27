@@ -8,7 +8,7 @@
 import Foundation
 
 private enum BannerState {
-    case Showing, Hiding, Gone
+    case Showing, Hidden, Gone
 }
 
 public class Banner: UIView {
@@ -43,31 +43,33 @@ public class Banner: UIView {
         return label
     }()
     
-    private var bannerState = BannerState.Hiding {
+    private var bannerState = BannerState.Hidden {
         didSet {
-            if let superview = self.superview, showingConstraint = self.showingConstraint, hiddenConstraint = self.hiddenConstraint where self.bannerState != oldValue {
-                switch self.bannerState {
-                case .Hiding:
-                    superview.removeConstraint(showingConstraint)
-                    superview.addConstraint(hiddenConstraint)
-                case .Showing:
-                    superview.removeConstraint(hiddenConstraint)
-                    superview.addConstraint(showingConstraint)
-                case .Gone:
-                    superview.removeConstraint(hiddenConstraint)
-                    superview.removeConstraint(showingConstraint)
-                    superview.removeConstraints(self.commonConstraints)
-                }
+            if self.bannerState != oldValue {
                 self.forceUpdates()
             }
         }
     }
     
     private func forceUpdates() {
-        self.setNeedsLayout()
-        self.setNeedsUpdateConstraints()
-        self.layoutIfNeeded()
-        self.updateConstraintsIfNeeded()
+        if let superview = self.superview, showingConstraint = self.showingConstraint, hiddenConstraint = self.hiddenConstraint {
+            switch self.bannerState {
+            case .Hidden:
+                superview.removeConstraint(showingConstraint)
+                superview.addConstraint(hiddenConstraint)
+            case .Showing:
+                superview.removeConstraint(hiddenConstraint)
+                superview.addConstraint(showingConstraint)
+            case .Gone:
+                superview.removeConstraint(hiddenConstraint)
+                superview.removeConstraint(showingConstraint)
+                superview.removeConstraints(self.commonConstraints)
+            }
+            self.setNeedsLayout()
+            self.setNeedsUpdateConstraints()
+            self.layoutIfNeeded()
+            self.updateConstraintsIfNeeded()
+        }
     }
     
     internal func didTap(recognizer: UITapGestureRecognizer) {
@@ -153,14 +155,13 @@ public class Banner: UIView {
             superview.addConstraints(self.commonConstraints)
             self.showingConstraint = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: window, attribute: .Top, multiplier: 1.0, constant: 0.0)
             self.hiddenConstraint = NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: window, attribute: .Top, multiplier: 1.0, constant: 0.0)
-            superview.addConstraint(self.hiddenConstraint!)
-            self.forceUpdates()
         }
     }
     
     public func show(duration: NSTimeInterval? = nil) {
         if let window = self.topWindow() {
             window.addSubview(self)
+            self.forceUpdates()
             UIView.animateWithDuration(self.animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {
                 self.bannerState = .Showing
             }, completion: { finished in
@@ -175,7 +176,7 @@ public class Banner: UIView {
     
     public func dismiss() {
         UIView.animateWithDuration(self.animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {
-            self.bannerState = .Hiding
+            self.bannerState = .Hidden
         }, completion: { finished in
             self.bannerState = .Gone
             self.removeFromSuperview()
