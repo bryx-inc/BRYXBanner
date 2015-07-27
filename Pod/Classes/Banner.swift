@@ -1,13 +1,11 @@
 //
 //  Banner.swift
-//  Bryx 911
 //
 //  Created by Harlan Haskins on 7/27/15.
 //  Copyright (c) 2015 Bryx. All rights reserved.
 //
 
 import Foundation
-import UIKit
 
 private enum BannerState {
     case Showing, Hiding, Gone
@@ -26,16 +24,18 @@ public class Banner: UIView {
     public var animationDuration: NSTimeInterval = 0.4
     
     public var didTapBlock: (() -> ())?
+    public var didDismissBlock: (() -> ())?
     public var dismissesOnTap = true
+    public var dismissesOnSwipe = true
     
-    public let titleLabel: UILabel = {
+    public var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         return label
     }()
     
-    public let detailLabel: UILabel = {
+    public var detailLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
         label.numberOfLines = 2
@@ -78,7 +78,9 @@ public class Banner: UIView {
     }
     
     internal func didSwipe(recognizer: UISwipeGestureRecognizer) {
-        self.dismiss()
+        if self.dismissesOnSwipe {
+            self.dismiss()
+        }
     }
     
     public init(title: String, subtitle: String, image: UIImage? = nil, backgroundColor: UIColor = UIColor.blackColor(), textColor: UIColor = UIColor.whiteColor(), opacity: CGFloat = 0.95, didTapBlock: (() -> ())? = nil) {
@@ -161,10 +163,10 @@ public class Banner: UIView {
             window.addSubview(self)
             UIView.animateWithDuration(self.animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {
                 self.bannerState = .Showing
-                }, completion: { finished in
-                    if let duration = duration {
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * NSTimeInterval(NSEC_PER_SEC))), dispatch_get_main_queue(), self.dismiss)
-                    }
+            }, completion: { finished in
+                if let duration = duration {
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * NSTimeInterval(NSEC_PER_SEC))), dispatch_get_main_queue(), self.dismiss)
+                }
             })
         } else {
             println("[Banner]: Could not find window. Aborting.")
@@ -174,9 +176,10 @@ public class Banner: UIView {
     public func dismiss() {
         UIView.animateWithDuration(self.animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {
             self.bannerState = .Hiding
-            }, completion: { finished in
-                self.bannerState = .Gone
-                self.removeFromSuperview()
+        }, completion: { finished in
+            self.bannerState = .Gone
+            self.removeFromSuperview()
+            self.didDismissBlock?()
         })
     }
 }
