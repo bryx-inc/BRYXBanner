@@ -28,7 +28,6 @@ public enum BannerSpringiness {
 }
 
 /// Banner is a dropdown notification view that presents above the main view controller, but below the status bar.
-
 public class Banner: UIView {
     private class func topWindow() -> UIWindow? {
         for window in (UIApplication.sharedApplication().windows as! [UIWindow]).reverse() {
