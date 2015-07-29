@@ -35,6 +35,12 @@ it, simply add the following line to your Podfile:
 pod "BRYXBanner"
 ```
 
+If you intend to use BRYXBanner on a Swift 2 project, use the `swift-2` branch in your Podfile.
+
+```ruby
+pod "BRYXBanner", :branch => 'swift-2'
+```
+
 If you need to support iOS 7, just copy `Banner.swift` into your Xcode project.
 
 ## Author
