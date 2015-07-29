@@ -12,7 +12,7 @@ private enum BannerState {
 }
 
 public class Banner: UIView {
-    func topWindow() -> UIWindow? {
+    private class func topWindow() -> UIWindow? {
         var finalWindow: UIWindow? = nil
         for window in (UIApplication.sharedApplication().windows as! [UIWindow]).reverse() {
             if window.windowLevel == UIWindowLevelNormal && !window.hidden { finalWindow = window }
@@ -21,12 +21,38 @@ public class Banner: UIView {
     }
     
     private let contentView = UIView()
+    private let backgroundView = UIView()
     public var animationDuration: NSTimeInterval = 0.4
+    public var textColor = UIColor.whiteColor() {
+        didSet {
+            resetTintColor()
+        }
+    }
+    public var hasShadows = true {
+        didSet {
+            resetShadows()
+        }
+    }
+    
+    override public var backgroundColor: UIColor? {
+        get { return backgroundView.backgroundColor }
+        set { backgroundView.backgroundColor = newValue }
+    }
+    
+    override public var alpha: CGFloat {
+        get { return backgroundView.alpha }
+        set { backgroundView.alpha = newValue }
+    }
     
     public var didTapBlock: (() -> ())?
     public var didDismissBlock: (() -> ())?
     public var dismissesOnTap = true
     public var dismissesOnSwipe = true
+    public var shouldTintImage = true {
+        didSet {
+            resetTintColor()
+        }
+    }
     
     public var titleLabel: UILabel = {
         let label = UILabel()
@@ -43,17 +69,40 @@ public class Banner: UIView {
         return label
     }()
     
+    let image: UIImage?
+    
+    public var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        imageView.contentMode = .ScaleAspectFit
+        return imageView
+    }()
+    
     private var bannerState = BannerState.Hidden {
         didSet {
-            if self.bannerState != oldValue {
-                self.forceUpdates()
+            if bannerState != oldValue {
+                forceUpdates()
             }
         }
     }
     
+    public init(title: String, subtitle: String, image: UIImage? = nil, backgroundColor: UIColor = UIColor.blackColor(), didTapBlock: (() -> ())? = nil) {
+        self.didTapBlock = didTapBlock
+        self.image = image
+        super.init(frame: CGRectZero)
+        resetShadows()
+        addGestureRecognizers()
+        initializeSubviews()
+        resetTintColor()
+        titleLabel.text = title
+        detailLabel.text = subtitle
+        backgroundView.backgroundColor = backgroundColor
+        backgroundView.alpha = 0.95
+    }
+    
     private func forceUpdates() {
-        if let superview = self.superview, showingConstraint = self.showingConstraint, hiddenConstraint = self.hiddenConstraint {
-            switch self.bannerState {
+        if let superview = superview, showingConstraint = showingConstraint, hiddenConstraint = hiddenConstraint {
+            switch bannerState {
             case .Hidden:
                 superview.removeConstraint(showingConstraint)
                 superview.addConstraint(hiddenConstraint)
@@ -63,64 +112,72 @@ public class Banner: UIView {
             case .Gone:
                 superview.removeConstraint(hiddenConstraint)
                 superview.removeConstraint(showingConstraint)
-                superview.removeConstraints(self.commonConstraints)
+                superview.removeConstraints(commonConstraints)
             }
-            self.setNeedsLayout()
-            self.setNeedsUpdateConstraints()
-            self.layoutIfNeeded()
-            self.updateConstraintsIfNeeded()
+            setNeedsLayout()
+            setNeedsUpdateConstraints()
+            layoutIfNeeded()
+            updateConstraintsIfNeeded()
         }
     }
     
     internal func didTap(recognizer: UITapGestureRecognizer) {
-        if self.dismissesOnTap {
-            self.dismiss()
+        if dismissesOnTap {
+            dismiss()
         }
-        self.didTapBlock?()
+        didTapBlock?()
     }
     
     internal func didSwipe(recognizer: UISwipeGestureRecognizer) {
-        if self.dismissesOnSwipe {
-            self.dismiss()
+        if dismissesOnSwipe {
+            dismiss()
         }
     }
     
-    public init(title: String, subtitle: String, image: UIImage? = nil, backgroundColor: UIColor = UIColor.blackColor(), textColor: UIColor = UIColor.whiteColor(), opacity: CGFloat = 0.95, didTapBlock: (() -> ())? = nil) {
-        self.didTapBlock = didTapBlock
-        super.init(frame: CGRectZero)
-        self.contentView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        self.addSubview(self.contentView)
-        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didTap:"))
+    private func addGestureRecognizers() {
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didTap:"))
         let swipe = UISwipeGestureRecognizer(target: self, action: "didSwipe:")
         swipe.direction = .Up
-        self.addGestureRecognizer(swipe)
-        self.layer.shadowColor = UIColor.blackColor().CGColor
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowOffset = CGSize(width: 0, height: 0)
-        self.layer.shadowRadius = 4
-        self.backgroundColor = backgroundColor.colorWithAlphaComponent(opacity)
-        self.setTranslatesAutoresizingMaskIntoConstraints(false)
-        self.titleLabel.text = title
-        self.detailLabel.text = subtitle
-        self.titleLabel.textColor = textColor
-        self.detailLabel.textColor = textColor
-        self.contentView.addSubview(self.titleLabel)
-        self.contentView.addSubview(self.detailLabel)
+        addGestureRecognizer(swipe)
+    }
+    
+    private func resetTintColor() {
+        titleLabel.textColor = textColor
+        detailLabel.textColor = textColor
+        imageView.image = shouldTintImage ? image?.imageWithRenderingMode(.AlwaysTemplate) : image
+        imageView.tintColor = shouldTintImage ? textColor : nil
+    }
+    
+    private func resetShadows() {
+        layer.shadowColor = UIColor.blackColor().CGColor
+        layer.shadowOpacity = self.hasShadows ? 0.5 : 0.0
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowRadius = 4
+    }
+    
+    private func initializeSubviews() {
+        setTranslatesAutoresizingMaskIntoConstraints(false)
+        addSubview(backgroundView)
+        backgroundView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        for side in ["H", "V"] {
+            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("\(side):|[view]|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["view": backgroundView]))
+        }
+        backgroundView.backgroundColor = backgroundColor
+        contentView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        backgroundView.addSubview(contentView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(detailLabel)
         let statusBarSize = UIApplication.sharedApplication().statusBarFrame.size
         let heightOffset = min(statusBarSize.height, statusBarSize.width) - 7.0 // Arbitrary, but looks nice.
         for format in ["H:|[view]|", "V:|-(\(heightOffset))-[view]|"] {
-            self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: .DirectionLeadingToTrailing, metrics: nil, views: ["view": self.contentView]))
+            backgroundView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: .DirectionLeadingToTrailing, metrics: nil, views: ["view": contentView]))
         }
         let leftConstraintText: String
         var views = [String: UIView]()
         if let image = image {
-            let imageView = UIImageView(image: image.imageWithRenderingMode(.AlwaysTemplate))
-            imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
-            imageView.contentMode = .ScaleAspectFit
-            imageView.tintColor = textColor
-            self.contentView.addSubview(imageView)
-            self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(15)-[view]", options: .DirectionLeadingToTrailing, metrics: nil, views: ["view": imageView]))
-            self.contentView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .CenterY, relatedBy: .Equal, toItem: self.contentView, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
+            contentView.addSubview(imageView)
+            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(15)-[view]", options: .DirectionLeadingToTrailing, metrics: nil, views: ["view": imageView]))
+            contentView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .CenterY, relatedBy: .Equal, toItem: contentView, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
             imageView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 25.0))
             imageView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: imageView, attribute: .Width, multiplier: 1.0, constant: 0.0))
             leftConstraintText = "[imageView]"
@@ -128,12 +185,12 @@ public class Banner: UIView {
         } else {
             leftConstraintText = "|"
         }
-        for view in [self.titleLabel, self.detailLabel] {
+        for view in [titleLabel, detailLabel] {
             views["label"] = view
             let constraintFormat = "H:\(leftConstraintText)-(15)-[label]-(8)-|"
-            self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(constraintFormat, options: .DirectionLeadingToTrailing, metrics: nil, views: views))
+            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(constraintFormat, options: .DirectionLeadingToTrailing, metrics: nil, views: views))
         }
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(10)-[titleLabel][detailLabel]-(10)-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["titleLabel": self.titleLabel, "detailLabel": self.detailLabel]))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(10)-[titleLabel][detailLabel]-(10)-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["titleLabel": titleLabel, "detailLabel": detailLabel]))
     }
     
     public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -150,19 +207,20 @@ public class Banner: UIView {
     
     override public func didMoveToSuperview() {
         super.didMoveToSuperview()
-        if let superview = self.superview where self.bannerState != .Gone {
-            self.commonConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[banner]|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["banner": self]) as! [NSLayoutConstraint]
-            superview.addConstraints(self.commonConstraints)
-            self.showingConstraint = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: window, attribute: .Top, multiplier: 1.0, constant: 0.0)
-            self.hiddenConstraint = NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: window, attribute: .Top, multiplier: 1.0, constant: 0.0)
+        if let superview = superview where bannerState != .Gone {
+            commonConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[banner]|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["banner": self]) as! [NSLayoutConstraint]
+            superview.addConstraints(commonConstraints)
+            let yOffset: CGFloat = -5.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
+            showingConstraint = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: window, attribute: .Top, multiplier: 1.0, constant: 0.0)
+            hiddenConstraint = NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: window, attribute: .Top, multiplier: 1.0, constant: yOffset)
         }
     }
     
     public func show(duration: NSTimeInterval? = nil) {
-        if let window = self.topWindow() {
+        if let window = Banner.topWindow() {
             window.addSubview(self)
-            self.forceUpdates()
-            UIView.animateWithDuration(self.animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {
+            forceUpdates()
+            UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {
                 self.bannerState = .Showing
             }, completion: { finished in
                 if let duration = duration {
@@ -175,7 +233,7 @@ public class Banner: UIView {
     }
     
     public func dismiss() {
-        UIView.animateWithDuration(self.animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {
+        UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {
             self.bannerState = .Hidden
         }, completion: { finished in
             self.bannerState = .Gone
