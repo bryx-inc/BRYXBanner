@@ -13,70 +13,90 @@ private enum BannerState {
 
 public class Banner: UIView {
     private class func topWindow() -> UIWindow? {
-        var finalWindow: UIWindow? = nil
         for window in (UIApplication.sharedApplication().windows as! [UIWindow]).reverse() {
-            if window.windowLevel == UIWindowLevelNormal && !window.hidden { finalWindow = window }
+            if window.windowLevel == UIWindowLevelNormal && !window.hidden { return window }
         }
-        return finalWindow
+        return nil
     }
     
     private let contentView = UIView()
     private let backgroundView = UIView()
+    
+    /// How long the slide down animation should last.
     public var animationDuration: NSTimeInterval = 0.4
+    
+    /// The color of the text as well as the image tint color if `shouldTintImage` is `true`.
     public var textColor = UIColor.whiteColor() {
         didSet {
             resetTintColor()
         }
     }
+    
+    /// Whether or not the banner should show a shadow when presented.
     public var hasShadows = true {
         didSet {
             resetShadows()
         }
     }
     
+    /// The color of the background view. Defaults to `nil`.
     override public var backgroundColor: UIColor? {
         get { return backgroundView.backgroundColor }
         set { backgroundView.backgroundColor = newValue }
     }
     
+    /// The opacity of the background view. Defaults to 0.95.
     override public var alpha: CGFloat {
         get { return backgroundView.alpha }
         set { backgroundView.alpha = newValue }
     }
     
+    /// A block to call when the uer taps on the banner.
     public var didTapBlock: (() -> ())?
+    
+    /// A block to call after the banner has finished dismissing and is off screen.
     public var didDismissBlock: (() -> ())?
+    
+    /// Whether or not the banner should dismiss itself when the user taps. Defaults to `true`.
     public var dismissesOnTap = true
+    
+    /// Whether or not the banner should dismiss itself when the user swipes up. Defaults to `true`.
     public var dismissesOnSwipe = true
+    
+    /// Whether or not the banner should tint the associated image to the provided `textColor`. Defaults to `true`.
     public var shouldTintImage = true {
         didSet {
             resetTintColor()
         }
     }
     
+    /// The label that displays the banner's title.
     public var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         return label
-    }()
+        }()
     
+    /// The label that displays the banner's subtitle.
     public var detailLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
         label.numberOfLines = 2
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         return label
-    }()
+        }()
     
+    /// The image on the left of the banner.
     let image: UIImage?
     
+    /// The image view that displays the `image`.
     public var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
         imageView.contentMode = .ScaleAspectFit
         return imageView
-    }()
+        }()
     
     private var bannerState = BannerState.Hidden {
         didSet {
@@ -86,6 +106,13 @@ public class Banner: UIView {
         }
     }
     
+    /// A Banner with the provided `title`, `subtitle`, and optional `image`, ready to be presented with `show()`.
+    ///
+    /// :param: title The title of the banner.
+    /// :param: subtitle The subtitle of the banner.
+    /// :param: image The image on the left of the banner. Optional. Defaults to nil.
+    /// :param: backgroundColor The color of the banner's background view. Defaults to `UIColor.blackColor()`.
+    /// :param: didTapBlock An action to be called when the user taps on the banner. Optional. Defaults to `nil`.
     public init(title: String, subtitle: String, image: UIImage? = nil, backgroundColor: UIColor = UIColor.blackColor(), didTapBlock: (() -> ())? = nil) {
         self.didTapBlock = didTapBlock
         self.image = image
@@ -193,10 +220,6 @@ public class Banner: UIView {
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(10)-[titleLabel][detailLabel]-(10)-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["titleLabel": titleLabel, "detailLabel": detailLabel]))
     }
     
-    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
-    
     required public init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -216,29 +239,32 @@ public class Banner: UIView {
         }
     }
     
+    /// Shows the banner. If a `duration` is specified, the banner dismisses itself automatically after that duration elapses.
+    /// :param: duration A time interval, after which the banner will dismiss itself. Optional. Defaults to `nil`.
     public func show(duration: NSTimeInterval? = nil) {
         if let window = Banner.topWindow() {
             window.addSubview(self)
             forceUpdates()
             UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {
                 self.bannerState = .Showing
-            }, completion: { finished in
-                if let duration = duration {
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * NSTimeInterval(NSEC_PER_SEC))), dispatch_get_main_queue(), self.dismiss)
-                }
+                }, completion: { finished in
+                    if let duration = duration {
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * NSTimeInterval(NSEC_PER_SEC))), dispatch_get_main_queue(), self.dismiss)
+                    }
             })
         } else {
             println("[Banner]: Could not find window. Aborting.")
         }
     }
     
+    /// Dismisses the banner.
     public func dismiss() {
         UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {
             self.bannerState = .Hidden
-        }, completion: { finished in
-            self.bannerState = .Gone
-            self.removeFromSuperview()
-            self.didDismissBlock?()
+            }, completion: { finished in
+                self.bannerState = .Gone
+                self.removeFromSuperview()
+                self.didDismissBlock?()
         })
     }
 }
