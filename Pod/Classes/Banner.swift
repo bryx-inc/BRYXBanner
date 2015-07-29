@@ -14,7 +14,7 @@ private enum BannerState {
 public class Banner: UIView {
     func topWindow() -> UIWindow? {
         var finalWindow: UIWindow? = nil
-        for window in (UIApplication.sharedApplication().windows as! [UIWindow]).reverse() {
+        for window in (UIApplication.sharedApplication().windows ).reverse() {
             if window.windowLevel == UIWindowLevelNormal && !window.hidden { finalWindow = window }
         }
         return finalWindow
@@ -31,7 +31,7 @@ public class Banner: UIView {
     public var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -39,7 +39,7 @@ public class Banner: UIView {
         let label = UILabel()
         label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
         label.numberOfLines = 2
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -88,7 +88,7 @@ public class Banner: UIView {
     public init(title: String, subtitle: String, image: UIImage? = nil, backgroundColor: UIColor = UIColor.blackColor(), textColor: UIColor = UIColor.whiteColor(), opacity: CGFloat = 0.95, didTapBlock: (() -> ())? = nil) {
         self.didTapBlock = didTapBlock
         super.init(frame: CGRectZero)
-        self.contentView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.contentView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.contentView)
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didTap:"))
         let swipe = UISwipeGestureRecognizer(target: self, action: "didSwipe:")
@@ -99,7 +99,7 @@ public class Banner: UIView {
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.layer.shadowRadius = 4
         self.backgroundColor = backgroundColor.colorWithAlphaComponent(opacity)
-        self.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel.text = title
         self.detailLabel.text = subtitle
         self.titleLabel.textColor = textColor
@@ -115,7 +115,7 @@ public class Banner: UIView {
         var views = [String: UIView]()
         if let image = image {
             let imageView = UIImageView(image: image.imageWithRenderingMode(.AlwaysTemplate))
-            imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+            imageView.translatesAutoresizingMaskIntoConstraints = false
             imageView.contentMode = .ScaleAspectFit
             imageView.tintColor = textColor
             self.contentView.addSubview(imageView)
@@ -151,7 +151,7 @@ public class Banner: UIView {
     override public func didMoveToSuperview() {
         super.didMoveToSuperview()
         if let superview = self.superview where self.bannerState != .Gone {
-            self.commonConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[banner]|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["banner": self]) as! [NSLayoutConstraint]
+            self.commonConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[banner]|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["banner": self]) 
             superview.addConstraints(self.commonConstraints)
             self.showingConstraint = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: window, attribute: .Top, multiplier: 1.0, constant: 0.0)
             self.hiddenConstraint = NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: window, attribute: .Top, multiplier: 1.0, constant: 0.0)
@@ -170,7 +170,7 @@ public class Banner: UIView {
                 }
             })
         } else {
-            println("[Banner]: Could not find window. Aborting.")
+            print("[Banner]: Could not find window. Aborting.")
         }
     }
     
