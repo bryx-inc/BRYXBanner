@@ -11,6 +11,24 @@ private enum BannerState {
     case Showing, Hidden, Gone
 }
 
+/// A level of 'springiness' for Banners.
+///
+/// - None: The banner will slide in and not bounce.
+/// - Slight: The banner will bounce a little.
+/// - Heavy: The banner will bounce a lot.
+public enum BannerSpringiness {
+    case None, Slight, Heavy
+    private var springValues: (damping: CGFloat, velocity: CGFloat) {
+        switch self {
+        case .None: return (damping: 1.0, velocity: 1.0)
+        case .Slight: return (damping: 0.7, velocity: 1.5)
+        case .Heavy: return (damping: 0.6, velocity: 2.0)
+        }
+    }
+}
+
+/// Banner is a dropdown notification view that presents above the main view controller, but below the status bar.
+
 public class Banner: UIView {
     private class func topWindow() -> UIWindow? {
         for window in (UIApplication.sharedApplication().windows as! [UIWindow]).reverse() {
@@ -24,6 +42,8 @@ public class Banner: UIView {
     
     /// How long the slide down animation should last.
     public var animationDuration: NSTimeInterval = 0.4
+    
+    public var springiness = BannerSpringiness.Slight
     
     /// The color of the text as well as the image tint color if `shouldTintImage` is `true`.
     public var textColor = UIColor.whiteColor() {
@@ -195,7 +215,7 @@ public class Banner: UIView {
         contentView.addSubview(titleLabel)
         contentView.addSubview(detailLabel)
         let statusBarSize = UIApplication.sharedApplication().statusBarFrame.size
-        let heightOffset = min(statusBarSize.height, statusBarSize.width) - 7.0 // Arbitrary, but looks nice.
+        let heightOffset = min(statusBarSize.height, statusBarSize.width) // Arbitrary, but looks nice.
         for format in ["H:|[view]|", "V:|-(\(heightOffset))-[view]|"] {
             backgroundView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: .DirectionLeadingToTrailing, metrics: nil, views: ["view": contentView]))
         }
@@ -233,8 +253,8 @@ public class Banner: UIView {
         if let superview = superview where bannerState != .Gone {
             commonConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[banner]|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["banner": self]) as! [NSLayoutConstraint]
             superview.addConstraints(commonConstraints)
-            let yOffset: CGFloat = -5.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
-            showingConstraint = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: window, attribute: .Top, multiplier: 1.0, constant: 0.0)
+            let yOffset: CGFloat = -7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
+            showingConstraint = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: window, attribute: .Top, multiplier: 1.0, constant: yOffset)
             hiddenConstraint = NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: window, attribute: .Top, multiplier: 1.0, constant: yOffset)
         }
     }
@@ -245,7 +265,8 @@ public class Banner: UIView {
         if let window = Banner.topWindow() {
             window.addSubview(self)
             forceUpdates()
-            UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {
+            let (damping, velocity) = self.springiness.springValues
+            UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .AllowUserInteraction, animations: {
                 self.bannerState = .Showing
                 }, completion: { finished in
                     if let duration = duration {
@@ -259,7 +280,8 @@ public class Banner: UIView {
     
     /// Dismisses the banner.
     public func dismiss() {
-        UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {
+        let (damping, velocity) = self.springiness.springValues
+        UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .AllowUserInteraction, animations: {
             self.bannerState = .Hidden
             }, completion: { finished in
                 self.bannerState = .Gone

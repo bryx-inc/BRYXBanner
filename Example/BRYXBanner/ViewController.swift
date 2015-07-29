@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     @IBAction func showImageNotification(sender: UIButton) {
         let banner = Banner(title: "Image Notification", subtitle: "Here's a great image notification.", image: UIImage(named: "Icon"), backgroundColor: UIColor(red:48.00/255.0, green:174.0/255.0, blue:51.5/255.0, alpha:1.000))
+        banner.springiness = .Heavy
         banner.show(duration: 3.0)
     }
 
