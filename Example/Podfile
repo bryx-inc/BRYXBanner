@@ -1,12 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-target 'BRYXBanner_Example', :exclusive => true do
-  pod "BRYXBanner", :path => "../"
-end
-
-target 'BRYXBanner_Tests', :exclusive => true do
-  pod "BRYXBanner", :path => "../"
-
-  
-end
+link_with "BRYXBanner_Example", "BRYXBanner_Tests"
+pod "BRYXBanner", :path => "../"

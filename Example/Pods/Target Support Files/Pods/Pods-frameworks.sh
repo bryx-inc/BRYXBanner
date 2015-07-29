@@ -52,8 +52,8 @@ code_sign_if_enabled() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework 'Pods-BRYXBanner_Tests/BRYXBanner.framework'
+  install_framework 'Pods/BRYXBanner.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework 'Pods-BRYXBanner_Tests/BRYXBanner.framework'
+  install_framework 'Pods/BRYXBanner.framework'
 fi

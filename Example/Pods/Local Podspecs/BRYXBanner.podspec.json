@@ -1,16 +1,15 @@
 {
   "name": "BRYXBanner",
-  "version": "0.1.0",
-  "summary": "A short description of BRYXBanner.",
-  "description": "An optional longer description of BRYXBanner\n\n* Markdown format.\n* Don't worry about the indent, we strip it!",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/BRYXBanner",
+  "version": "0.2.1",
+  "summary": "A lightweight dropdown notification for iOS 7+, in Swift.",
+  "homepage": "https://github.com/bryx-inc/BRYXBanner",
   "license": "MIT",
   "authors": {
     "Harlan Haskins": "harlan@harlanhaskins.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/BRYXBanner.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/bryx-inc/BRYXBanner.git",
+    "tag": "0.2.1"
   },
   "platforms": {
     "ios": "8.0"
