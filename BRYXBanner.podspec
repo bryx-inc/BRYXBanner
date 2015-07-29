@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "BRYXBanner"
-  s.version          = "0.2.0"
+  s.version          = "0.2.1"
   s.summary          = "A lightweight dropdown notification for iOS 7+, in Swift."
   s.homepage         = "https://github.com/bryx-inc/BRYXBanner"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
