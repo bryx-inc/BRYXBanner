@@ -132,7 +132,7 @@ public class Banner: UIView {
     /// :param: image The image on the left of the banner. Optional. Defaults to nil.
     /// :param: backgroundColor The color of the banner's background view. Defaults to `UIColor.blackColor()`.
     /// :param: didTapBlock An action to be called when the user taps on the banner. Optional. Defaults to `nil`.
-    public init(title: String, subtitle: String, image: UIImage? = nil, backgroundColor: UIColor = UIColor.blackColor(), didTapBlock: (() -> ())? = nil) {
+    public required init(title: String, subtitle: String, image: UIImage? = nil, backgroundColor: UIColor = UIColor.blackColor(), didTapBlock: (() -> ())? = nil) {
         self.didTapBlock = didTapBlock
         self.image = image
         super.init(frame: CGRectZero)
