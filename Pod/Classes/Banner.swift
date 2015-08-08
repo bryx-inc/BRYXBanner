@@ -91,33 +91,33 @@ public class Banner: UIView {
     }
     
     /// The label that displays the banner's title.
-    public var titleLabel: UILabel = {
+    public let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
         label.numberOfLines = 0
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         return label
-        }()
+    }()
     
     /// The label that displays the banner's subtitle.
-    public var detailLabel: UILabel = {
+    public let detailLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
         label.numberOfLines = 0
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         return label
-        }()
+    }()
     
     /// The image on the left of the banner.
     let image: UIImage?
     
     /// The image view that displays the `image`.
-    public var imageView: UIImageView = {
+    public let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
         imageView.contentMode = .ScaleAspectFit
         return imageView
-        }()
+    }()
     
     private var bannerState = BannerState.Hidden {
         didSet {
