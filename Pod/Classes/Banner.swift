@@ -37,6 +37,7 @@ public class Banner: UIView {
     }
     
     private let contentView = UIView()
+    private let labelView = UIView()
     private let backgroundView = UIView()
     
     /// How long the slide down animation should last.
@@ -93,6 +94,7 @@ public class Banner: UIView {
     public var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        label.numberOfLines = 0
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         return label
         }()
@@ -101,7 +103,7 @@ public class Banner: UIView {
     public var detailLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         return label
         }()
@@ -127,12 +129,12 @@ public class Banner: UIView {
     
     /// A Banner with the provided `title`, `subtitle`, and optional `image`, ready to be presented with `show()`.
     ///
-    /// :param: title The title of the banner.
-    /// :param: subtitle The subtitle of the banner.
+    /// :param: title The title of the banner. Optional. Defaults to nil.
+    /// :param: subtitle The subtitle of the banner. Optional. Defaults to nil.
     /// :param: image The image on the left of the banner. Optional. Defaults to nil.
     /// :param: backgroundColor The color of the banner's background view. Defaults to `UIColor.blackColor()`.
     /// :param: didTapBlock An action to be called when the user taps on the banner. Optional. Defaults to `nil`.
-    public required init(title: String, subtitle: String, image: UIImage? = nil, backgroundColor: UIColor = UIColor.blackColor(), didTapBlock: (() -> ())? = nil) {
+    public required init(title: String? = nil, subtitle: String? = nil, image: UIImage? = nil, backgroundColor: UIColor = UIColor.blackColor(), didTapBlock: (() -> ())? = nil) {
         self.didTapBlock = didTapBlock
         self.image = image
         super.init(frame: CGRectZero)
@@ -202,41 +204,52 @@ public class Banner: UIView {
     }
     
     private func initializeSubviews() {
+        let views = [
+            "backgroundView": backgroundView,
+            "contentView": contentView,
+            "imageView": imageView,
+            "labelView": labelView,
+            "titleLabel": titleLabel,
+            "detailLabel": detailLabel
+        ]
         setTranslatesAutoresizingMaskIntoConstraints(false)
         addSubview(backgroundView)
         backgroundView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        for side in ["H", "V"] {
-            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("\(side):|[view]|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["view": backgroundView]))
-        }
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[backgroundView]|", options: .DirectionLeadingToTrailing, metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundView(>=80)]|", options: .DirectionLeadingToTrailing, metrics: nil, views: views))
         backgroundView.backgroundColor = backgroundColor
         contentView.setTranslatesAutoresizingMaskIntoConstraints(false)
         backgroundView.addSubview(contentView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(detailLabel)
+        labelView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        contentView.addSubview(labelView)
+        labelView.addSubview(titleLabel)
+        labelView.addSubview(detailLabel)
         let statusBarSize = UIApplication.sharedApplication().statusBarFrame.size
         let heightOffset = min(statusBarSize.height, statusBarSize.width) // Arbitrary, but looks nice.
-        for format in ["H:|[view]|", "V:|-(\(heightOffset))-[view]|"] {
-            backgroundView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: .DirectionLeadingToTrailing, metrics: nil, views: ["view": contentView]))
+        for format in ["H:|[contentView]|", "V:|-(\(heightOffset))-[contentView]|"] {
+            backgroundView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: .DirectionLeadingToTrailing, metrics: nil, views: views))
         }
         let leftConstraintText: String
-        var views = [String: UIView]()
         if let image = image {
             contentView.addSubview(imageView)
-            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(15)-[view]", options: .DirectionLeadingToTrailing, metrics: nil, views: ["view": imageView]))
+            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(15)-[imageView]", options: .DirectionLeadingToTrailing, metrics: nil, views: views))
             contentView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .CenterY, relatedBy: .Equal, toItem: contentView, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
             imageView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 25.0))
             imageView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: imageView, attribute: .Width, multiplier: 1.0, constant: 0.0))
             leftConstraintText = "[imageView]"
-            views["imageView"] = imageView
         } else {
             leftConstraintText = "|"
         }
-        for view in [titleLabel, detailLabel] {
-            views["label"] = view
-            let constraintFormat = "H:\(leftConstraintText)-(15)-[label]-(8)-|"
-            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(constraintFormat, options: .DirectionLeadingToTrailing, metrics: nil, views: views))
-        }
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(10)-[titleLabel][detailLabel]-(10)-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["titleLabel": titleLabel, "detailLabel": detailLabel]))
+      let constraintFormat = "H:\(leftConstraintText)-(15)-[labelView]-(8)-|"
+      contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(constraintFormat, options: .DirectionLeadingToTrailing, metrics: nil, views: views))
+      contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(>=1)-[labelView]-(>=1)-|", options: .DirectionLeadingToTrailing, metrics: nil, views: views))
+      backgroundView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[contentView]-(<=1)-[labelView]", options: .AlignAllCenterY, metrics: nil, views: views))
+
+      for view in [titleLabel, detailLabel] {
+          let constraintFormat = "H:|-(15)-[label]-(8)-|"
+          contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(constraintFormat, options: .DirectionLeadingToTrailing, metrics: nil, views: ["label": view]))
+      }
+      labelView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(10)-[titleLabel][detailLabel]-(10)-|", options: .DirectionLeadingToTrailing, metrics: nil, views: views))
     }
     
     required public init(coder aDecoder: NSCoder) {
