@@ -13,6 +13,7 @@ struct BannerColors {
     static let red = UIColor(red:198.0/255.0, green:26.00/255.0, blue:27.0/255.0, alpha:1.000)
     static let green = UIColor(red:48.00/255.0, green:174.0/255.0, blue:51.5/255.0, alpha:1.000)
     static let yellow = UIColor(red:255.0/255.0, green:204.0/255.0, blue:51.0/255.0, alpha:1.000)
+    static let blue = UIColor(red:31.0/255.0, green:136.0/255.0, blue:255.0/255.0, alpha:1.000)
 }
 
 class ViewController: UIViewController {
@@ -44,7 +45,8 @@ class ViewController: UIViewController {
         switch colorSegmentedControl.selectedSegmentIndex {
         case 0: return BannerColors.red
         case 1: return BannerColors.green
-        default: return BannerColors.yellow
+        case 2: return BannerColors.yellow
+        default: return BannerColors.blue
         }
     }
     

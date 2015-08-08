@@ -56,12 +56,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ngm-KC-t1a">
-                                <rect key="frame" x="221" y="122" width="161" height="29"/>
+                                <rect key="frame" x="194" y="122" width="215" height="29"/>
                                 <animations/>
                                 <segments>
                                     <segment title="Red"/>
                                     <segment title="Green"/>
                                     <segment title="Yellow"/>
+                                    <segment title="Blue"/>
                                 </segments>
                                 <color key="tintColor" red="0.77647058820000003" green="0.1019607843" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
