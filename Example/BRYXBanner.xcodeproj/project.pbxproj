@@ -7,14 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B35EBC7C9A942B04D60A06E /* Pods_BRYXBanner_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 227A9F98E26AC0531DC39EF9 /* Pods_BRYXBanner_Example.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		AEF41F16806C94527C61C9D5 /* Pods_BRYXBanner_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 227A9F98E26AC0531DC39EF9 /* Pods_BRYXBanner_Example.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		D42EB881608ABFDA912EA158 /* Pods_BRYXBanner_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF1988EB36721B46626BEC1B /* Pods_BRYXBanner_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DC03EBCE1B697AFA0066BD8D /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC03EBCD1B697AFA0066BD8D /* BorderedButton.swift */; };
+		DC8451971B75A4A8004E0B6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC8451961B75A4A8004E0B6A /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		C420EF0AA100EB65074119E1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C971A33B63C3D37D09C18034 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		DC03EBCD1B697AFA0066BD8D /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
+		DC8451961B75A4A8004E0B6A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FF1988EB36721B46626BEC1B /* Pods_BRYXBanner_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BRYXBanner_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -54,7 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEF41F16806C94527C61C9D5 /* Pods_BRYXBanner_Example.framework in Frameworks */,
+				5B35EBC7C9A942B04D60A06E /* Pods_BRYXBanner_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +117,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				DC8451961B75A4A8004E0B6A /* Main.storyboard */,
 				DC03EBCD1B697AFA0066BD8D /* BorderedButton.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -247,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				DC8451971B75A4A8004E0B6A /* Main.storyboard in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 PODS:
-  - BRYXBanner (0.1.0)
+  - BRYXBanner (0.2.2)
 
 DEPENDENCIES:
   - BRYXBanner (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  BRYXBanner: e408738a1016cac6a636061169104dec03f1535d
+  BRYXBanner: 48b3759e3f04799f14081e3dfa913bea6d528011
 
 COCOAPODS: 0.38.2

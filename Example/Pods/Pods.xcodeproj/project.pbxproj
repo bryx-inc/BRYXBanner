@@ -8,38 +8,38 @@
 
 /* Begin PBXBuildFile section */
 		1E28FAB0B1B7A7476071F2091BD9B0CE /* Pods-BRYXBanner_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2558D0553E3E332EDB4526C066DA4F /* Pods-BRYXBanner_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1F0F6E1D704FFF5FD8CB4F9597A807F6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23AFD74E429795050A04568C905A244 /* Foundation.framework */; };
-		30C5C7341ED0DDCA89DA9F64B8D65AF7 /* BRYXBanner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D4F8E89F7ED8137869C118A7870676 /* BRYXBanner-dummy.m */; };
+		1F0F6E1D704FFF5FD8CB4F9597A807F6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EDD0726B23CF202EDE7872954FCE7AD /* Foundation.framework */; };
 		3446F67124A94ECC09546334CA9D36A5 /* Pods-BRYXBanner_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FFCA883CF75D9D421A9F771ABCEA35 /* Pods-BRYXBanner_Example-dummy.m */; };
-		40A2453DD6EC7EC6A37126D0AC5FC35C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23AFD74E429795050A04568C905A244 /* Foundation.framework */; };
+		40A2453DD6EC7EC6A37126D0AC5FC35C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EDD0726B23CF202EDE7872954FCE7AD /* Foundation.framework */; };
+		55D30745BD9F2DBD486806327B9CFF7D /* BRYXBanner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BEB52485F88E7E9AB00FA3BC4625080 /* BRYXBanner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E3FC4C3234818F746389D467DD098C6 /* BRYXBanner.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0933F797D91F63DC779909CF1C29A619 /* BRYXBanner.bundle */; };
 		65216C052EEBA73D60954D758B0EF6FF /* Pods-BRYXBanner_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 81941119E0024D5391FB95813BF3AFE9 /* Pods-BRYXBanner_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6B3DD27943762D1F9C0D1AC779D07C37 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80424028C938220222E62536264206F6 /* Banner.swift */; };
-		91D16775BF0EE0CD2C7897FC8B04D7F9 /* BRYXBanner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E9B38E218B226E19CB3870B9F22185A8 /* BRYXBanner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A1BFA5D38D22B2C11643078710C14555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23AFD74E429795050A04568C905A244 /* Foundation.framework */; };
-		E4A7D6DA564BB35762E6275D12F6CC91 /* BRYXBanner.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5559DECD6061C1033B822134889E9783 /* BRYXBanner.bundle */; };
+		7E38A6C35F41431C1619E3A71C375EA8 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762BB54E48B9FD77C0C1315F6105F48E /* Banner.swift */; };
+		9DA020D5859797542959A23BDE12DF81 /* BRYXBanner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AB5BC7B4CF7A3CBB4440111F36B3A /* BRYXBanner-dummy.m */; };
+		A4F7859A34A9D0062EDE79AAD0EDDBC6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EDD0726B23CF202EDE7872954FCE7AD /* Foundation.framework */; };
 		EBCAC0F15AEA629AD44EBBBC95B8BE8A /* Pods-BRYXBanner_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A54567165C4354A4369A85836187F7 /* Pods-BRYXBanner_Tests-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6CDB2E8714473A6CEADCF2F906824FB2 /* PBXContainerItemProxy */ = {
+		AC88C11C25DB3B25E13A042DF479881C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C3CCA02FDEB3AF4BB72330603533705E;
-			remoteInfo = "BRYXBanner-BRYXBanner";
-		};
-		8DFE7BA62F16F7FA9F92C8DA89DABDBF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E522B0F87A66D129E06D30414D305097;
+			remoteGlobalIDString = 9667B3001EEE5721980E6494351BFAD6;
 			remoteInfo = BRYXBanner;
 		};
-		95125D6FFE9E3E43AB8FEFD6036C43B5 /* PBXContainerItemProxy */ = {
+		BB0B1ADFF1CB52DCE7BA52C83E006650 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E522B0F87A66D129E06D30414D305097;
+			remoteGlobalIDString = CC222DBEE3464D340E18EAF31C22C67B;
+			remoteInfo = "BRYXBanner-BRYXBanner";
+		};
+		F7EAAAD77164FE7652F133B63A27FB6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9667B3001EEE5721980E6494351BFAD6;
 			remoteInfo = BRYXBanner;
 		};
 /* End PBXContainerItemProxy section */
@@ -47,50 +47,50 @@
 /* Begin PBXFileReference section */
 		027802CB3CB47762BD790449419BE9D2 /* Pods-BRYXBanner_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BRYXBanner_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		0895746DA27229AEF47BE027F5BA5961 /* Pods-BRYXBanner_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BRYXBanner_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		0933F797D91F63DC779909CF1C29A619 /* BRYXBanner.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BRYXBanner.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		168173EC376719135C32963D0C9849DA /* BRYXBanner.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BRYXBanner.xcconfig; sourceTree = "<group>"; };
 		16F8C0160DAD49525A39B7FA6F1750DC /* Pods-BRYXBanner_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BRYXBanner_Example-resources.sh"; sourceTree = "<group>"; };
 		2153CA6B4E29DEEC18E11E890EE85063 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		28D4F8E89F7ED8137869C118A7870676 /* BRYXBanner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BRYXBanner-dummy.m"; sourceTree = "<group>"; };
 		35DFDE593A7DCDFABCDDC0B1DC5259DB /* Pods-BRYXBanner_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BRYXBanner_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		3A6C21F79DD9BEF4BF9D9F1090609209 /* Pods-BRYXBanner_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-BRYXBanner_Tests.modulemap"; sourceTree = "<group>"; };
+		3EDD0726B23CF202EDE7872954FCE7AD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		41E05AA2B5DD6BF93E9D82A5D3638532 /* Pods-BRYXBanner_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BRYXBanner_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		43B7560AF8806C30776E8683ED8C72E0 /* BRYXBanner-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "BRYXBanner-Private.xcconfig"; sourceTree = "<group>"; };
 		49E234B55B60393C0A9AAE9046C68810 /* Pods-BRYXBanner_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BRYXBanner_Tests-resources.sh"; sourceTree = "<group>"; };
 		4F25A26E380B501E8D583DBA19A6F584 /* Pods-BRYXBanner_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-BRYXBanner_Example.modulemap"; sourceTree = "<group>"; };
-		5559DECD6061C1033B822134889E9783 /* BRYXBanner.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BRYXBanner.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		58A54567165C4354A4369A85836187F7 /* Pods-BRYXBanner_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BRYXBanner_Tests-dummy.m"; sourceTree = "<group>"; };
-		6BED112806B1A086C37970CD272D5864 /* BRYXBanner-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "BRYXBanner-Private.xcconfig"; sourceTree = "<group>"; };
+		6C5AB5BC7B4CF7A3CBB4440111F36B3A /* BRYXBanner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BRYXBanner-dummy.m"; sourceTree = "<group>"; };
 		6EDB08E84CBB50D3F64DF5266A0533A4 /* Pods-BRYXBanner_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BRYXBanner_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6FEA6B91AAD7B4443B331A6550AA31D6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		731516C8BA69981208D2FBB1EB414EDF /* Pods-BRYXBanner_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BRYXBanner_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		74519314083BFF5E3A37E65954A24684 /* Pods-BRYXBanner_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BRYXBanner_Example-frameworks.sh"; sourceTree = "<group>"; };
-		80424028C938220222E62536264206F6 /* Banner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
+		762BB54E48B9FD77C0C1315F6105F48E /* Banner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
+		7BEB52485F88E7E9AB00FA3BC4625080 /* BRYXBanner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BRYXBanner-umbrella.h"; sourceTree = "<group>"; };
 		81941119E0024D5391FB95813BF3AFE9 /* Pods-BRYXBanner_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BRYXBanner_Tests-umbrella.h"; sourceTree = "<group>"; };
 		8AF32A8D50C8761DCA3BC27DCB0C886A /* Pods_BRYXBanner_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BRYXBanner_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4FFCA883CF75D9D421A9F771ABCEA35 /* Pods-BRYXBanner_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BRYXBanner_Example-dummy.m"; sourceTree = "<group>"; };
+		A7A9C9B7DCFF34DE699E59FF85FE8084 /* BRYXBanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BRYXBanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB2558D0553E3E332EDB4526C066DA4F /* Pods-BRYXBanner_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BRYXBanner_Example-umbrella.h"; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BB305B81340318C5DBC027451BEF04C0 /* BRYXBanner-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BRYXBanner-prefix.pch"; sourceTree = "<group>"; };
 		C15DF298B82F2EA44E64B6E386DDC4CF /* Pods_BRYXBanner_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BRYXBanner_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C23AFD74E429795050A04568C905A244 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		C308EDDC3962C8724BF37FE26BE80C3A /* BRYXBanner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BRYXBanner.modulemap; sourceTree = "<group>"; };
-		CE9421F53338BB0C97052B453AC77BAB /* BRYXBanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BRYXBanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF7E6F5D679B56209BC3EF4F8C32E59 /* Pods-BRYXBanner_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BRYXBanner_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E0E1D7C032CCAB2FD2F14E1D83C6E0E5 /* Pods-BRYXBanner_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BRYXBanner_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		E9B38E218B226E19CB3870B9F22185A8 /* BRYXBanner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BRYXBanner-umbrella.h"; sourceTree = "<group>"; };
 		F678E4AF68D3B329CE88F02E2CC7F165 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD864DC45F54DE83FECB97FA6C139350 /* Pods-BRYXBanner_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BRYXBanner_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		11569D671720AE7D38892D77F19BF1A6 /* Frameworks */ = {
+		1E5AAE0112DED1BB760A5FD4C279F17C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1BFA5D38D22B2C11643078710C14555 /* Foundation.framework in Frameworks */,
+				A4F7859A34A9D0062EDE79AAD0EDDBC6 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3FF8D55383F2D1E9DAF8E8E037B7AA37 /* Frameworks */ = {
+		39567AE1D85E59E3D7DEC245B89B0EB4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -116,6 +116,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		075AE9ABDECCD8C1BFA69CDC9D0DB821 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				762BB54E48B9FD77C0C1315F6105F48E /* Banner.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		0B93035F5E8068F7C2BA9639932189EF /* BRYXBanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,10 +147,10 @@
 			children = (
 				C308EDDC3962C8724BF37FE26BE80C3A /* BRYXBanner.modulemap */,
 				168173EC376719135C32963D0C9849DA /* BRYXBanner.xcconfig */,
-				6BED112806B1A086C37970CD272D5864 /* BRYXBanner-Private.xcconfig */,
-				28D4F8E89F7ED8137869C118A7870676 /* BRYXBanner-dummy.m */,
+				43B7560AF8806C30776E8683ED8C72E0 /* BRYXBanner-Private.xcconfig */,
+				6C5AB5BC7B4CF7A3CBB4440111F36B3A /* BRYXBanner-dummy.m */,
 				BB305B81340318C5DBC027451BEF04C0 /* BRYXBanner-prefix.pch */,
-				E9B38E218B226E19CB3870B9F22185A8 /* BRYXBanner-umbrella.h */,
+				7BEB52485F88E7E9AB00FA3BC4625080 /* BRYXBanner-umbrella.h */,
 				2153CA6B4E29DEEC18E11E890EE85063 /* Info.plist */,
 			);
 			name = "Support Files";
@@ -152,7 +160,7 @@
 		4C2D25D8CBA2E6CAD040F7A891EE8BBF /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				BDE720204BCEA0CCE68DDE04B779B4BD /* Classes */,
+				075AE9ABDECCD8C1BFA69CDC9D0DB821 /* Classes */,
 			);
 			path = Pod;
 			sourceTree = "<group>";
@@ -160,7 +168,7 @@
 		53F661C0CA7190D2CF05023FB33D61E4 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				C23AFD74E429795050A04568C905A244 /* Foundation.framework */,
+				3EDD0726B23CF202EDE7872954FCE7AD /* Foundation.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -202,19 +210,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BDE720204BCEA0CCE68DDE04B779B4BD /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				80424028C938220222E62536264206F6 /* Banner.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5559DECD6061C1033B822134889E9783 /* BRYXBanner.bundle */,
-				CE9421F53338BB0C97052B453AC77BAB /* BRYXBanner.framework */,
+				0933F797D91F63DC779909CF1C29A619 /* BRYXBanner.bundle */,
+				A7A9C9B7DCFF34DE699E59FF85FE8084 /* BRYXBanner.framework */,
 				8AF32A8D50C8761DCA3BC27DCB0C886A /* Pods_BRYXBanner_Example.framework */,
 				C15DF298B82F2EA44E64B6E386DDC4CF /* Pods_BRYXBanner_Tests.framework */,
 			);
@@ -259,19 +259,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7A5AE9AB9365A37675AE13467E29EA08 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				91D16775BF0EE0CD2C7897FC8B04D7F9 /* BRYXBanner-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7B6B2D723F3CB2707846D74529B66BD3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				65216C052EEBA73D60954D758B0EF6FF /* Pods-BRYXBanner_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEB1A7993A53603F34F6C2670195FCEE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55D30745BD9F2DBD486806327B9CFF7D /* BRYXBanner-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,11 +289,30 @@
 			buildRules = (
 			);
 			dependencies = (
-				0E16A013CA411E3DBC34845BBE400F14 /* PBXTargetDependency */,
+				79532FD11ABEBF771F866681DB0D1BBD /* PBXTargetDependency */,
 			);
 			name = "Pods-BRYXBanner_Example";
 			productName = "Pods-BRYXBanner_Example";
 			productReference = 8AF32A8D50C8761DCA3BC27DCB0C886A /* Pods_BRYXBanner_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9667B3001EEE5721980E6494351BFAD6 /* BRYXBanner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16076F0837AD8449F197FCA8C762A1F0 /* Build configuration list for PBXNativeTarget "BRYXBanner" */;
+			buildPhases = (
+				A75EADD408B7A5CF5A51049F8F20C5CD /* Sources */,
+				1E5AAE0112DED1BB760A5FD4C279F17C /* Frameworks */,
+				4CB69112519957B6BB83E812C3EE6D91 /* Resources */,
+				EEB1A7993A53603F34F6C2670195FCEE /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				727A4165A39C50C9F444C584E3B2FB1B /* PBXTargetDependency */,
+			);
+			name = BRYXBanner;
+			productName = BRYXBanner;
+			productReference = A7A9C9B7DCFF34DE699E59FF85FE8084 /* BRYXBanner.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		BB0C5B65A1F5E390EAE36B54F2103635 /* Pods-BRYXBanner_Tests */ = {
@@ -307,20 +326,20 @@
 			buildRules = (
 			);
 			dependencies = (
-				56CDC60A518CCFD836A175E1E1221D77 /* PBXTargetDependency */,
+				49F92437A667086B3D7B022CEAACFC7B /* PBXTargetDependency */,
 			);
 			name = "Pods-BRYXBanner_Tests";
 			productName = "Pods-BRYXBanner_Tests";
 			productReference = C15DF298B82F2EA44E64B6E386DDC4CF /* Pods_BRYXBanner_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C3CCA02FDEB3AF4BB72330603533705E /* BRYXBanner-BRYXBanner */ = {
+		CC222DBEE3464D340E18EAF31C22C67B /* BRYXBanner-BRYXBanner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7E1E22E3BF7D9267B61952A528C525F3 /* Build configuration list for PBXNativeTarget "BRYXBanner-BRYXBanner" */;
+			buildConfigurationList = F5B1A87CC072DA18A8ACF4178571E484 /* Build configuration list for PBXNativeTarget "BRYXBanner-BRYXBanner" */;
 			buildPhases = (
-				F9F15F992CF5BE6A5AC70549A505B3AF /* Sources */,
-				3FF8D55383F2D1E9DAF8E8E037B7AA37 /* Frameworks */,
-				28B7459FC9F0627A778D24A46C16305E /* Resources */,
+				ADCB29F06CA4F78A4D5A8A7807E79F4C /* Sources */,
+				39567AE1D85E59E3D7DEC245B89B0EB4 /* Frameworks */,
+				B345E3B1986DC0EE32B0AEC634E85014 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -328,27 +347,8 @@
 			);
 			name = "BRYXBanner-BRYXBanner";
 			productName = "BRYXBanner-BRYXBanner";
-			productReference = 5559DECD6061C1033B822134889E9783 /* BRYXBanner.bundle */;
+			productReference = 0933F797D91F63DC779909CF1C29A619 /* BRYXBanner.bundle */;
 			productType = "com.apple.product-type.bundle";
-		};
-		E522B0F87A66D129E06D30414D305097 /* BRYXBanner */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8AA0C7EB5B93FE4459A9D156356B644F /* Build configuration list for PBXNativeTarget "BRYXBanner" */;
-			buildPhases = (
-				C19B5A3AD513EF0A1C8554274259102B /* Sources */,
-				11569D671720AE7D38892D77F19BF1A6 /* Frameworks */,
-				E198B236628514DFB9B55DBB0EBB5D31 /* Resources */,
-				7A5AE9AB9365A37675AE13467E29EA08 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0BD505A86932A884BEC37E4AC7A914B5 /* PBXTargetDependency */,
-			);
-			name = BRYXBanner;
-			productName = BRYXBanner;
-			productReference = CE9421F53338BB0C97052B453AC77BAB /* BRYXBanner.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -371,8 +371,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E522B0F87A66D129E06D30414D305097 /* BRYXBanner */,
-				C3CCA02FDEB3AF4BB72330603533705E /* BRYXBanner-BRYXBanner */,
+				9667B3001EEE5721980E6494351BFAD6 /* BRYXBanner */,
+				CC222DBEE3464D340E18EAF31C22C67B /* BRYXBanner-BRYXBanner */,
 				803A84C8C43478988B95AC6A21B52F19 /* Pods-BRYXBanner_Example */,
 				BB0C5B65A1F5E390EAE36B54F2103635 /* Pods-BRYXBanner_Tests */,
 			);
@@ -380,18 +380,18 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		28B7459FC9F0627A778D24A46C16305E /* Resources */ = {
+		4CB69112519957B6BB83E812C3EE6D91 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E3FC4C3234818F746389D467DD098C6 /* BRYXBanner.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E198B236628514DFB9B55DBB0EBB5D31 /* Resources */ = {
+		B345E3B1986DC0EE32B0AEC634E85014 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4A7D6DA564BB35762E6275D12F6CC91 /* BRYXBanner.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +406,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A75EADD408B7A5CF5A51049F8F20C5CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DA020D5859797542959A23BDE12DF81 /* BRYXBanner-dummy.m in Sources */,
+				7E38A6C35F41431C1619E3A71C375EA8 /* Banner.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADCB29F06CA4F78A4D5A8A7807E79F4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AF7870AA2DA9B4AE74CBF25B56138411 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -414,42 +430,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C19B5A3AD513EF0A1C8554274259102B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				30C5C7341ED0DDCA89DA9F64B8D65AF7 /* BRYXBanner-dummy.m in Sources */,
-				6B3DD27943762D1F9C0D1AC779D07C37 /* Banner.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F9F15F992CF5BE6A5AC70549A505B3AF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0BD505A86932A884BEC37E4AC7A914B5 /* PBXTargetDependency */ = {
+		49F92437A667086B3D7B022CEAACFC7B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BRYXBanner;
+			target = 9667B3001EEE5721980E6494351BFAD6 /* BRYXBanner */;
+			targetProxy = AC88C11C25DB3B25E13A042DF479881C /* PBXContainerItemProxy */;
+		};
+		727A4165A39C50C9F444C584E3B2FB1B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "BRYXBanner-BRYXBanner";
-			target = C3CCA02FDEB3AF4BB72330603533705E /* BRYXBanner-BRYXBanner */;
-			targetProxy = 6CDB2E8714473A6CEADCF2F906824FB2 /* PBXContainerItemProxy */;
+			target = CC222DBEE3464D340E18EAF31C22C67B /* BRYXBanner-BRYXBanner */;
+			targetProxy = BB0B1ADFF1CB52DCE7BA52C83E006650 /* PBXContainerItemProxy */;
 		};
-		0E16A013CA411E3DBC34845BBE400F14 /* PBXTargetDependency */ = {
+		79532FD11ABEBF771F866681DB0D1BBD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BRYXBanner;
-			target = E522B0F87A66D129E06D30414D305097 /* BRYXBanner */;
-			targetProxy = 95125D6FFE9E3E43AB8FEFD6036C43B5 /* PBXContainerItemProxy */;
-		};
-		56CDC60A518CCFD836A175E1E1221D77 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BRYXBanner;
-			target = E522B0F87A66D129E06D30414D305097 /* BRYXBanner */;
-			targetProxy = 8DFE7BA62F16F7FA9F92C8DA89DABDBF /* PBXContainerItemProxy */;
+			target = 9667B3001EEE5721980E6494351BFAD6 /* BRYXBanner */;
+			targetProxy = F7EAAAD77164FE7652F133B63A27FB6A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -546,14 +546,14 @@
 			};
 			name = Release;
 		};
-		4C9E94EDD0E1CD39261CACED999D237D /* Debug */ = {
+		4F584D7B01FDAD0CB8093B0C4B14B92E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BED112806B1A086C37970CD272D5864 /* BRYXBanner-Private.xcconfig */;
+			baseConfigurationReference = 43B7560AF8806C30776E8683ED8C72E0 /* BRYXBanner-Private.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.1.0;
+				CURRENT_PROJECT_VERSION = 0.2.2;
 				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 0.1.0;
+				DYLIB_COMPATIBILITY_VERSION = 0.2.2;
 				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -613,9 +613,9 @@
 			};
 			name = Debug;
 		};
-		6F4109E4C528121126A2FEBA2BE35658 /* Release */ = {
+		64E1223A0B80DBD0352911B0DE86D736 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BED112806B1A086C37970CD272D5864 /* BRYXBanner-Private.xcconfig */;
+			baseConfigurationReference = 43B7560AF8806C30776E8683ED8C72E0 /* BRYXBanner-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				PRODUCT_NAME = BRYXBanner;
@@ -623,7 +623,7 @@
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
 			};
-			name = Release;
+			name = Debug;
 		};
 		A56C3C21345E33C4B04B58C34EEE28D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -655,14 +655,14 @@
 			};
 			name = Debug;
 		};
-		BFA7F41F808C9097121A31B5FA843F7C /* Release */ = {
+		B47EE23EDB3EDE13996D767FE84B4880 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BED112806B1A086C37970CD272D5864 /* BRYXBanner-Private.xcconfig */;
+			baseConfigurationReference = 43B7560AF8806C30776E8683ED8C72E0 /* BRYXBanner-Private.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.1.0;
+				CURRENT_PROJECT_VERSION = 0.2.2;
 				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 0.1.0;
+				DYLIB_COMPATIBILITY_VERSION = 0.2.2;
 				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -679,6 +679,18 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B5C929D27D1B1B6CD7A802C920F1FABA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43B7560AF8806C30776E8683ED8C72E0 /* BRYXBanner-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				PRODUCT_NAME = BRYXBanner;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -712,18 +724,6 @@
 			};
 			name = Debug;
 		};
-		E77FF90A6F119ED5F992017130B61B3D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BED112806B1A086C37970CD272D5864 /* BRYXBanner-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = BRYXBanner;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -745,6 +745,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		16076F0837AD8449F197FCA8C762A1F0 /* Build configuration list for PBXNativeTarget "BRYXBanner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F584D7B01FDAD0CB8093B0C4B14B92E /* Debug */,
+				B47EE23EDB3EDE13996D767FE84B4880 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -754,20 +763,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7E1E22E3BF7D9267B61952A528C525F3 /* Build configuration list for PBXNativeTarget "BRYXBanner-BRYXBanner" */ = {
+		F5B1A87CC072DA18A8ACF4178571E484 /* Build configuration list for PBXNativeTarget "BRYXBanner-BRYXBanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E77FF90A6F119ED5F992017130B61B3D /* Debug */,
-				6F4109E4C528121126A2FEBA2BE35658 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8AA0C7EB5B93FE4459A9D156356B644F /* Build configuration list for PBXNativeTarget "BRYXBanner" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4C9E94EDD0E1CD39261CACED999D237D /* Debug */,
-				BFA7F41F808C9097121A31B5FA843F7C /* Release */,
+				64E1223A0B80DBD0352911B0DE86D736 /* Debug */,
+				B5C929D27D1B1B6CD7A802C920F1FABA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
