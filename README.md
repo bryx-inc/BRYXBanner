@@ -43,6 +43,10 @@ pod "BRYXBanner", :branch => 'swift-2'
 
 If you need to support iOS 7, just copy `Banner.swift` into your Xcode project.
 
+## Documentation
+
+Docs are automatically generated and available [right here](http://cocoadocs.org/docsets/BRYXBanner/).
+
 ## Author
 
 Harlan Haskins, harlan@harlanhaskins.com
