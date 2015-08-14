@@ -5,7 +5,7 @@
 //  Copyright (c) 2015 Bryx. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 private enum BannerState {
     case Showing, Hidden, Gone
