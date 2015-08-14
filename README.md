@@ -32,8 +32,7 @@ BRYXBanner is available through [CocoaPods](http://cocoapods.org) and [Carthage]
 
 #### Using CocoaPods
 
-To install
-it, simply add the following line to your Podfile:
+To install it, simply add the following line to your Podfile:
 
 ```ruby
 pod "BRYXBanner"
