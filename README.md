@@ -28,7 +28,11 @@ Demo project requires iOS 8, though BRYXBanner works on iOS 7+.
 
 ## Installation
 
-BRYXBanner is available through [CocoaPods](http://cocoapods.org). To install
+BRYXBanner is available through [CocoaPods](http://cocoapods.org) and [Carthage](https://github.com/Carthage/Carthage). 
+
+#### Using CocoaPods
+
+To install
 it, simply add the following line to your Podfile:
 
 ```ruby
@@ -42,6 +46,31 @@ pod "BRYXBanner", :branch => 'swift-2'
 ```
 
 If you need to support iOS 7, just copy `Banner.swift` into your Xcode project.
+
+#### Using Carthage
+
+Create a Cartfile in your project directory and add the following line.
+
+```ruby
+github "bryx-inc/BRYXBanner"
+```
+Run `carthage update` from the command line. This will build the framework. The framework will be within `Carthage/build/example.framework`.
+
+Add the framework to your project by going to your app's targets and selecting the General tab. Drag the built framework onto `Linked Frameworks and Libraries`
+
+Go to the Build Phases tab, click the `+` sign and add a new run script phase. Then add the following:
+
+```
+/usr/local/bin/carthage copy-frameworks
+```
+to the box under Shell. Finally click `+` to add a new input file. Replace the default with:
+
+```
+$(SRCROOT)/Carthage/Build/iOS/BRYXBanner.framework
+```
+
+Now build and run. You're all set! More information on Carthage is available [here](https://github.com/Carthage/Carthage).
+
 
 ## Documentation
 
