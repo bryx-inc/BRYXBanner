@@ -10,6 +10,12 @@ A lightweight dropdown banner for iOS 7+.
 
 ## Usage
 
+Import `BRYXBanner` 
+
+```rust
+import BRYXBanner
+```
+
 Create a banner using the designated initializer.
 
 ```rust
