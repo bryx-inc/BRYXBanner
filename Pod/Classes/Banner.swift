@@ -266,11 +266,10 @@ public class Banner: UIView {
             commonConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[banner]|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["banner": self]) as! [NSLayoutConstraint]
             superview.addConstraints(commonConstraints)
             let yOffset: CGFloat = -7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
-            showingConstraint = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: window, attribute: .Top, multiplier: 1.0, constant: yOffset)
-            hiddenConstraint = NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: window, attribute: .Top, multiplier: 1.0, constant: yOffset)
+            showingConstraint = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: superview, attribute: .Top, multiplier: 1.0, constant: yOffset)
+            hiddenConstraint = NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: superview, attribute: .Top, multiplier: 1.0, constant: yOffset)
         }
-    }
-    
+    }    
     /// Shows the banner. If a `duration` is specified, the banner dismisses itself automatically after that duration elapses.
     /// :param: duration A time interval, after which the banner will dismiss itself. Optional. Defaults to `nil`.
     public func show(duration: NSTimeInterval? = nil) {
