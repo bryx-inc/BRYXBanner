@@ -43,6 +43,15 @@ public class Banner: UIView {
     /// How long the slide down animation should last.
     public var animationDuration: NSTimeInterval = 0.4
     
+    /// The preferred style of the status bar during display of the banner. Defaults to `.LightContent`.
+    ///
+    /// If the banner's `adjustsStatusBarStyle` is false, this property does nothing.
+    public var preferredStatusBarStyle = UIStatusBarStyle.LightContent
+    
+    /// Whether or not this banner should adjust the status bar style during its presentation. Defaults to `false`.
+    public var adjustsStatusBarStyle = false
+    
+    /// How 'springy' the banner should display. Defaults to `.Slight`
     public var springiness = BannerSpringiness.Slight
     
     /// The color of the text as well as the image tint color if `shouldTintImage` is `true`.
@@ -278,11 +287,17 @@ public class Banner: UIView {
             view.addSubview(self)
             forceUpdates()
             let (damping, velocity) = self.springiness.springValues
+            let oldStatusBarStyle = UIApplication.sharedApplication().statusBarStyle
+            if adjustStatusBar {
+                UIApplication.sharedApplication().setStatusBarStyle(preferredStatusBarStyle, animated: true)
+            }
             UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .AllowUserInteraction, animations: {
                 self.bannerState = .Showing
                 }, completion: { finished in
                     if let duration = duration {
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * NSTimeInterval(NSEC_PER_SEC))), dispatch_get_main_queue(), self.dismiss)
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * NSTimeInterval(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+                            self.dismiss(oldStatusBarStyle: adjustStatusBar ? oldStatusBarStyle : nil)
+                        }
                     }
             })
         } else {
@@ -291,10 +306,13 @@ public class Banner: UIView {
     }
     
     /// Dismisses the banner.
-    public func dismiss() {
+    public func dismiss(oldStatusBarStyle: UIStatusBarStyle? = nil) {
         let (damping, velocity) = self.springiness.springValues
         UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .AllowUserInteraction, animations: {
             self.bannerState = .Hidden
+            if let oldStatusBarStyle = oldStatusBarStyle {
+                UIApplication.sharedApplication().setStatusBarStyle(oldStatusBarStyle, animated: true)
+            }
             }, completion: { finished in
                 self.bannerState = .Gone
                 self.removeFromSuperview()
