@@ -288,7 +288,7 @@ public class Banner: UIView {
             forceUpdates()
             let (damping, velocity) = self.springiness.springValues
             let oldStatusBarStyle = UIApplication.sharedApplication().statusBarStyle
-            if adjustStatusBar {
+            if adjustsStatusBarStyle {
                 UIApplication.sharedApplication().setStatusBarStyle(preferredStatusBarStyle, animated: true)
             }
             UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .AllowUserInteraction, animations: {
@@ -296,7 +296,7 @@ public class Banner: UIView {
                 }, completion: { finished in
                     if let duration = duration {
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * NSTimeInterval(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-                            self.dismiss(oldStatusBarStyle: adjustStatusBar ? oldStatusBarStyle : nil)
+                            self.dismiss(oldStatusBarStyle: self.adjustsStatusBarStyle ? oldStatusBarStyle : nil)
                         }
                     }
             })
