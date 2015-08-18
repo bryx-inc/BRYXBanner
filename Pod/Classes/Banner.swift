@@ -266,16 +266,16 @@ public class Banner: UIView {
             commonConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[banner]|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["banner": self]) as! [NSLayoutConstraint]
             superview.addConstraints(commonConstraints)
             let yOffset: CGFloat = -7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
-            showingConstraint = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: window, attribute: .Top, multiplier: 1.0, constant: yOffset)
-            hiddenConstraint = NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: window, attribute: .Top, multiplier: 1.0, constant: yOffset)
+            showingConstraint = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: superview, attribute: .Top, multiplier: 1.0, constant: yOffset)
+            hiddenConstraint = NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: superview, attribute: .Top, multiplier: 1.0, constant: yOffset)
         }
-    }
-    
-    /// Shows the banner. If a `duration` is specified, the banner dismisses itself automatically after that duration elapses.
-    /// :param: duration A time interval, after which the banner will dismiss itself. Optional. Defaults to `nil`.
-    public func show(duration: NSTimeInterval? = nil) {
-        if let window = Banner.topWindow() {
-            window.addSubview(self)
+    }    
+
+    /// Shows the banner. If a view is specified, the banner will be displayed at the top of that view, otherwise at top of the top window. If a `duration` is specified, the banner dismisses itself automatically after that duration elapses.
+    /// :param: view A view the banner will be shown in. Optional. Defaults to 'nil', which in turn means it will be shown in the top window. duration A time interval, after which the banner will dismiss itself. Optional. Defaults to `nil`.
+    public func show(view: UIView? = Banner.topWindow(), duration: NSTimeInterval? = nil) {
+        if let view = view {
+            view.addSubview(self)
             forceUpdates()
             let (damping, velocity) = self.springiness.springValues
             UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .AllowUserInteraction, animations: {
