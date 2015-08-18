@@ -128,7 +128,7 @@
                                     <action selector="showButtonTapped:" destination="Bum-e0-eqM" eventType="touchUpInside" id="xBc-HO-GTa"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7iX-Gu-t1J">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7iX-Gu-t1J">
                                 <rect key="frame" x="384" y="248" width="51" height="31"/>
                                 <animations/>
                                 <color key="onTintColor" red="0.77647058820000003" green="0.1019607843" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>

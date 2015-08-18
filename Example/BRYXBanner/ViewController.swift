@@ -31,7 +31,11 @@ class ViewController: UIViewController {
         let subtitle = subtitleField.text.validated
         let banner = Banner(title: title, subtitle: subtitle, image: image, backgroundColor: color)
         banner.springiness = currentSpringiness()
-        banner.show(duration: 3.0)
+        if inViewSwitch.on {
+            banner.show(view: view, duration: 3.0)
+        } else {
+            banner.show(duration: 3.0)
+        }
     }
     
     func currentSpringiness() -> BannerSpringiness {
