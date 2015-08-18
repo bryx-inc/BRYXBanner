@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var subtitleField: UITextField!
     @IBOutlet weak var colorSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var inViewSwitch: UISwitch!
     
     @IBAction func showButtonTapped(sender: UIButton) {
         let color = currentColor()
