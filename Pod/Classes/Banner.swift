@@ -270,15 +270,10 @@ public class Banner: UIView {
             hiddenConstraint = NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: superview, attribute: .Top, multiplier: 1.0, constant: yOffset)
         }
     }    
-    /// Shows the banner. If a `duration` is specified, the banner dismisses itself automatically after that duration elapses.
-    /// :param: duration A time interval, after which the banner will dismiss itself. Optional. Defaults to `nil`.
-    public func show(duration: NSTimeInterval? = nil) {
-        showInView(view: nil, duration: duration)
-    }
-    
+
     /// Shows the banner. If a view is specified, the banner will be displayed at the top of that view, otherwise at top of the top window. If a `duration` is specified, the banner dismisses itself automatically after that duration elapses.
     /// :param: view A view the banner will be shown in. Optional. Defaults to 'nil', which in turn means it will be shown in the top window. duration A time interval, after which the banner will dismiss itself. Optional. Defaults to `nil`.
-    public func showInView(view:UIView?=Banner.topWindow(), duration: NSTimeInterval? = nil) {
+    public func show(view:UIView?=Banner.topWindow(), duration: NSTimeInterval? = nil) {
         if let view = view {
             view.addSubview(self)
             forceUpdates()
