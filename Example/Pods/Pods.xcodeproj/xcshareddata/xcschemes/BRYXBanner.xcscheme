@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AE453B7A722D892F1418B400"
+               BlueprintIdentifier = "011C9391B3D94AA6F6383B9F"
                BuildableName = "BRYXBanner.framework"
                BlueprintName = "BRYXBanner"
                ReferencedContainer = "container:Pods.xcodeproj">
