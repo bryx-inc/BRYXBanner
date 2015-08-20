@@ -283,6 +283,7 @@ public class Banner: UIView {
     public func show(view: UIView? = Banner.topWindow(), duration: NSTimeInterval? = nil) {
         guard let view = view else {
             print("[Banner]: Could not find window. Aborting.")
+            return
         }
         view.addSubview(self)
         forceUpdates()
