@@ -38,7 +38,7 @@ class BorderedButton: UIButton {
         }
     }
     
-    override var tintColor: UIColor? {
+    override var tintColor: UIColor! {
         didSet {
             self.setTitleColor(tintColor, forState: .Normal)
             self.layer.borderColor = tintColor?.CGColor
@@ -55,7 +55,7 @@ class BorderedButton: UIButton {
         loadView()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadView()
     }

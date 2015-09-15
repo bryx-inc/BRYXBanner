@@ -30,7 +30,7 @@ public enum BannerSpringiness {
 /// Banner is a dropdown notification view that presents above the main view controller, but below the status bar.
 public class Banner: UIView {
     private class func topWindow() -> UIWindow? {
-        for window in (UIApplication.sharedApplication().windows as! [UIWindow]).reverse() {
+        for window in UIApplication.sharedApplication().windows.reverse() {
             if window.windowLevel == UIWindowLevelNormal && !window.hidden { return window }
         }
         return nil
@@ -104,7 +104,7 @@ public class Banner: UIView {
         let label = UILabel()
         label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
         label.numberOfLines = 0
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -113,7 +113,7 @@ public class Banner: UIView {
         let label = UILabel()
         label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
         label.numberOfLines = 0
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -123,7 +123,7 @@ public class Banner: UIView {
     /// The image view that displays the `image`.
     public let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .ScaleAspectFit
         return imageView
     }()
@@ -138,11 +138,11 @@ public class Banner: UIView {
     
     /// A Banner with the provided `title`, `subtitle`, and optional `image`, ready to be presented with `show()`.
     ///
-    /// :param: title The title of the banner. Optional. Defaults to nil.
-    /// :param: subtitle The subtitle of the banner. Optional. Defaults to nil.
-    /// :param: image The image on the left of the banner. Optional. Defaults to nil.
-    /// :param: backgroundColor The color of the banner's background view. Defaults to `UIColor.blackColor()`.
-    /// :param: didTapBlock An action to be called when the user taps on the banner. Optional. Defaults to `nil`.
+    /// - parameter title: The title of the banner. Optional. Defaults to nil.
+    /// - parameter subtitle: The subtitle of the banner. Optional. Defaults to nil.
+    /// - parameter image: The image on the left of the banner. Optional. Defaults to nil.
+    /// - parameter backgroundColor: The color of the banner's background view. Defaults to `UIColor.blackColor()`.
+    /// - parameter didTapBlock: An action to be called when the user taps on the banner. Optional. Defaults to `nil`.
     public required init(title: String? = nil, subtitle: String? = nil, image: UIImage? = nil, backgroundColor: UIColor = UIColor.blackColor(), didTapBlock: (() -> ())? = nil) {
         self.didTapBlock = didTapBlock
         self.image = image
@@ -158,24 +158,23 @@ public class Banner: UIView {
     }
     
     private func forceUpdates() {
-        if let superview = superview, showingConstraint = showingConstraint, hiddenConstraint = hiddenConstraint {
-            switch bannerState {
-            case .Hidden:
-                superview.removeConstraint(showingConstraint)
-                superview.addConstraint(hiddenConstraint)
-            case .Showing:
-                superview.removeConstraint(hiddenConstraint)
-                superview.addConstraint(showingConstraint)
-            case .Gone:
-                superview.removeConstraint(hiddenConstraint)
-                superview.removeConstraint(showingConstraint)
-                superview.removeConstraints(commonConstraints)
-            }
-            setNeedsLayout()
-            setNeedsUpdateConstraints()
-            layoutIfNeeded()
-            updateConstraintsIfNeeded()
+        guard let superview = superview, showingConstraint = showingConstraint, hiddenConstraint = hiddenConstraint else { return }
+        switch bannerState {
+        case .Hidden:
+            superview.removeConstraint(showingConstraint)
+            superview.addConstraint(hiddenConstraint)
+        case .Showing:
+            superview.removeConstraint(hiddenConstraint)
+            superview.addConstraint(showingConstraint)
+        case .Gone:
+            superview.removeConstraint(hiddenConstraint)
+            superview.removeConstraint(showingConstraint)
+            superview.removeConstraints(commonConstraints)
         }
+        setNeedsLayout()
+        setNeedsUpdateConstraints()
+        layoutIfNeeded()
+        updateConstraintsIfNeeded()
     }
     
     internal func didTap(recognizer: UITapGestureRecognizer) {
@@ -221,15 +220,15 @@ public class Banner: UIView {
             "titleLabel": titleLabel,
             "detailLabel": detailLabel
         ]
-        setTranslatesAutoresizingMaskIntoConstraints(false)
+        translatesAutoresizingMaskIntoConstraints = false
         addSubview(backgroundView)
-        backgroundView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[backgroundView]|", options: .DirectionLeadingToTrailing, metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundView(>=80)]|", options: .DirectionLeadingToTrailing, metrics: nil, views: views))
         backgroundView.backgroundColor = backgroundColor
-        contentView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         backgroundView.addSubview(contentView)
-        labelView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        labelView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(labelView)
         labelView.addSubview(titleLabel)
         labelView.addSubview(detailLabel)
@@ -239,15 +238,15 @@ public class Banner: UIView {
             backgroundView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: .DirectionLeadingToTrailing, metrics: nil, views: views))
         }
         let leftConstraintText: String
-        if let image = image {
+        if image == nil {
+            leftConstraintText = "|"
+        } else {
             contentView.addSubview(imageView)
             contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(15)-[imageView]", options: .DirectionLeadingToTrailing, metrics: nil, views: views))
             contentView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .CenterY, relatedBy: .Equal, toItem: contentView, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
             imageView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 25.0))
             imageView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: imageView, attribute: .Width, multiplier: 1.0, constant: 0.0))
             leftConstraintText = "[imageView]"
-        } else {
-            leftConstraintText = "|"
         }
       let constraintFormat = "H:\(leftConstraintText)-(15)-[labelView]-(8)-|"
       contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(constraintFormat, options: .DirectionLeadingToTrailing, metrics: nil, views: views))
@@ -261,7 +260,7 @@ public class Banner: UIView {
       labelView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(10)-[titleLabel][detailLabel]-(10)-|", options: .DirectionLeadingToTrailing, metrics: nil, views: views))
     }
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -271,38 +270,36 @@ public class Banner: UIView {
     
     override public func didMoveToSuperview() {
         super.didMoveToSuperview()
-        if let superview = superview where bannerState != .Gone {
-            commonConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[banner]|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["banner": self]) as! [NSLayoutConstraint]
-            superview.addConstraints(commonConstraints)
-            let yOffset: CGFloat = -7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
-            showingConstraint = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: superview, attribute: .Top, multiplier: 1.0, constant: yOffset)
-            hiddenConstraint = NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: superview, attribute: .Top, multiplier: 1.0, constant: yOffset)
-        }
-    }    
+        guard let superview = superview where bannerState != .Gone else { return }
+        commonConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[banner]|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["banner": self])
+        superview.addConstraints(commonConstraints)
+        let yOffset: CGFloat = -7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
+        showingConstraint = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: superview, attribute: .Top, multiplier: 1.0, constant: yOffset)
+        hiddenConstraint = NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: superview, attribute: .Top, multiplier: 1.0, constant: yOffset)
+    }
 
     /// Shows the banner. If a view is specified, the banner will be displayed at the top of that view, otherwise at top of the top window. If a `duration` is specified, the banner dismisses itself automatically after that duration elapses.
-    /// :param: view A view the banner will be shown in. Optional. Defaults to 'nil', which in turn means it will be shown in the top window. duration A time interval, after which the banner will dismiss itself. Optional. Defaults to `nil`.
+    /// - parameter view: A view the banner will be shown in. Optional. Defaults to 'nil', which in turn means it will be shown in the top window. duration A time interval, after which the banner will dismiss itself. Optional. Defaults to `nil`.
     public func show(view: UIView? = Banner.topWindow(), duration: NSTimeInterval? = nil) {
-        if let view = view {
-            view.addSubview(self)
-            forceUpdates()
-            let (damping, velocity) = self.springiness.springValues
-            let oldStatusBarStyle = UIApplication.sharedApplication().statusBarStyle
-            if adjustsStatusBarStyle {
-                UIApplication.sharedApplication().setStatusBarStyle(preferredStatusBarStyle, animated: true)
-            }
-            UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .AllowUserInteraction, animations: {
-                self.bannerState = .Showing
-                }, completion: { finished in
-                    if let duration = duration {
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * NSTimeInterval(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-                            self.dismiss(oldStatusBarStyle: self.adjustsStatusBarStyle ? oldStatusBarStyle : nil)
-                        }
-                    }
-            })
-        } else {
-            println("[Banner]: Could not find window. Aborting.")
+        guard let view = view else {
+            print("[Banner]: Could not find view. Aborting.")
+            return
         }
+        view.addSubview(self)
+        forceUpdates()
+        let (damping, velocity) = self.springiness.springValues
+        let oldStatusBarStyle = UIApplication.sharedApplication().statusBarStyle
+        if adjustsStatusBarStyle {
+            UIApplication.sharedApplication().setStatusBarStyle(preferredStatusBarStyle, animated: true)
+        }
+        UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .AllowUserInteraction, animations: {
+            self.bannerState = .Showing
+            }, completion: { finished in
+                guard let duration = duration else { return }
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * NSTimeInterval(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+                    self.dismiss(self.adjustsStatusBarStyle ? oldStatusBarStyle : nil)
+                }
+        })
     }
     
     /// Dismisses the banner.

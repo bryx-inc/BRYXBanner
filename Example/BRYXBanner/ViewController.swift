@@ -27,12 +27,12 @@ class ViewController: UIViewController {
     @IBAction func showButtonTapped(sender: UIButton) {
         let color = currentColor()
         let image = imageSwitch.on ? UIImage(named: "Icon") : nil
-        let title = titleField.text.validated
-        let subtitle = subtitleField.text.validated
+        let title = titleField.text?.validated
+        let subtitle = subtitleField.text?.validated
         let banner = Banner(title: title, subtitle: subtitle, image: image, backgroundColor: color)
         banner.springiness = currentSpringiness()
         if inViewSwitch.on {
-            banner.show(view: view, duration: 3.0)
+            banner.show(view, duration: 3.0)
         } else {
             banner.show(duration: 3.0)
         }
