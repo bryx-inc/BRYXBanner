@@ -31,7 +31,7 @@ public enum BannerSpringiness {
 public class Banner: UIView {
     private class func topWindow() -> UIWindow? {
         for window in UIApplication.sharedApplication().windows.reverse() {
-            if window.windowLevel == UIWindowLevelNormal && !window.hidden { return window }
+            if window.windowLevel == UIWindowLevelNormal && !window.hidden && window.frame != CGRectZero { return window }
         }
         return nil
     }
