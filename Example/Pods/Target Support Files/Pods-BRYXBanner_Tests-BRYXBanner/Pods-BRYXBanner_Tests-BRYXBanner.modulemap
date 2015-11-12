@@ -1,5 +1,5 @@
 framework module BRYXBanner {
-  umbrella header "BRYXBanner-umbrella.h"
+  umbrella header "Pods-BRYXBanner_Tests-BRYXBanner-umbrella.h"
 
   export *
   module * { export * }
