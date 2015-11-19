@@ -1,14 +1,19 @@
 PODS:
-  - BRYXBanner (0.4.1)
+  - BRYXBanner (0.5.0):
+    - BRYXBanner/Core (= 0.5.0)
+  - BRYXBanner/Core (0.5.0)
+  - BRYXBanner/Test Helpers (0.5.0):
+    - BRYXBanner/Core
 
 DEPENDENCIES:
   - BRYXBanner (from `../`)
+  - BRYXBanner/Test Helpers (from `../`)
 
 EXTERNAL SOURCES:
   BRYXBanner:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  BRYXBanner: b9d72df3a6ed7f17bb5828828cdde8a68e7aa678
+  BRYXBanner: 62fd0548fbd2a5c001835d5c821eab21ded0bbf4
 
-COCOAPODS: 0.39.0.beta.4
+COCOAPODS: 0.39.0

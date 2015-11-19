@@ -14,8 +14,8 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'A1B42537CE118BBE2A6B9482'
-               BlueprintName = 'BRYXBanner'
+               BlueprintIdentifier = '35CEACC408977D83E25B74ED'
+               BlueprintName = 'Pods-BRYXBanner_Example-BRYXBanner'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'BRYXBanner.framework'>
             </BuildableReference>

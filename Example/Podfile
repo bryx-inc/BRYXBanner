@@ -6,5 +6,5 @@ target 'BRYXBanner_Example', :exclusive => true do
 end
 
 target 'BRYXBanner_Tests', :exclusive => true do
-  pod "BRYXBanner", :path => "../"
+  pod "BRYXBanner/Test Helpers", :path => "../"
 end

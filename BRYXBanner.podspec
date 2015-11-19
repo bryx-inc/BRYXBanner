@@ -10,8 +10,18 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '8.0'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'BRYXBanner' => ['Pod/Assets/*.png']
-  }
+  s.default_subspec = 'Core'
+
+  s.subspec 'Core' do |sp|
+    sp.source_files = 'Pod/Classes/**/*'
+   sp.resource_bundles = {
+     'BRYXBanner' => ['Pod/Assets/*.png']
+   }
+  end
+
+  s.subspec "Test Helpers" do |sp|
+    sp.source_files = 'Pod/Test Helpers/**/*'
+    sp.dependency 'BRYXBanner/Core'
+  end
+
 end
