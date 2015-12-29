@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
    }
   end
 
-  s.subspec "Test Helpers" do |sp|
+  s.subspec "TestHelpers" do |sp|
     sp.source_files = 'Pod/Test Helpers/**/*'
     sp.dependency 'BRYXBanner/Core'
   end
