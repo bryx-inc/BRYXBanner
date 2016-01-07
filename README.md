@@ -76,9 +76,13 @@ Now build and run. You're all set! More information on Carthage is available [he
 
 Docs are automatically generated and available [right here](http://cocoadocs.org/docsets/BRYXBanner/).
 
+## Maintainer
+
+Adam Binsz ([@adambinsz](https://github.com/adambinsz))
+
 ## Author
 
-Harlan Haskins, harlan@harlanhaskins.com
+Harlan Haskins ([@harlanhaskins](https://github.com/harlanhaskins))
 
 ## License
 
