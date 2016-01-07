@@ -1,6 +1,6 @@
 {
   "name": "BRYXBanner",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "summary": "A lightweight dropdown notification for iOS 7+, in Swift.",
   "homepage": "https://github.com/bryx-inc/BRYXBanner",
   "license": "MIT",
@@ -9,7 +9,7 @@
   },
   "source": {
     "git": "https://github.com/bryx-inc/BRYXBanner.git",
-    "tag": "0.5.0"
+    "tag": "0.5.1"
   },
   "platforms": {
     "ios": "8.0"
@@ -27,7 +27,7 @@
       }
     },
     {
-      "name": "Test Helpers",
+      "name": "TestHelpers",
       "source_files": "Pod/Test Helpers/**/*",
       "dependencies": {
         "BRYXBanner/Core": [
