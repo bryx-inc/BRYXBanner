@@ -294,7 +294,8 @@ public class Banner: UIView {
                 hiddenConstraint = self.constraintWithAttribute(.Bottom, .Equal, to: .Top, of: superview, constant: yOffset)
             case .Bottom:
                 showingConstraint = self.constraintWithAttribute(.Bottom, .Equal, to: .Bottom, of: superview)
-                hiddenConstraint = self.constraintWithAttribute(.Top, .Equal, to: .Bottom, of: superview, constant: 0.0)
+                let yOffset: CGFloat = 7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
+                hiddenConstraint = self.constraintWithAttribute(.Top, .Equal, to: .Bottom, of: superview, constant: yOffset)
         }
     }
   
