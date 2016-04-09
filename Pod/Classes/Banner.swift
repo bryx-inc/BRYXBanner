@@ -15,7 +15,7 @@ private enum BannerState {
 ///
 /// - Top: The banner will appear at the top.
 /// - Bottom: The banner will appear at the bottom.
-public enum BannerLocation {
+public enum BannerPosition {
     case Top, Bottom
 }
 
@@ -60,7 +60,7 @@ public class Banner: UIView {
     public var adjustsStatusBarStyle = false
     
     /// Wheter the banner should appear at the top or the bottom of the screen. Defaults to `.Top`.
-    public var location = BannerLocation.Top
+    public var position = BannerPosition.Top
 
     /// How 'springy' the banner should display. Defaults to `.Slight`
     public var springiness = BannerSpringiness.Slight
@@ -287,7 +287,7 @@ public class Banner: UIView {
         commonConstraints = self.constraintsWithAttributes([.Leading, .Trailing], .Equal, to: superview)
         superview.addConstraints(commonConstraints)
 
-        switch self.location {
+        switch self.position {
             case .Top:
                 showingConstraint = self.constraintWithAttribute(.Top, .Equal, to: .Top, of: superview)
                 let yOffset: CGFloat = -7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
@@ -306,7 +306,7 @@ public class Banner: UIView {
   
     private func adjustHeightOffset() {
       guard let superview = superview else { return }
-      if superview === Banner.topWindow() && self.location == .Top {
+      if superview === Banner.topWindow() && self.position == .Top {
         let statusBarSize = UIApplication.sharedApplication().statusBarFrame.size
         let heightOffset = min(statusBarSize.height, statusBarSize.width) // Arbitrary, but looks nice.
         contentTopOffsetConstraint.constant = heightOffset
