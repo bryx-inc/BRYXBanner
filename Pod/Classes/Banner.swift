@@ -11,6 +11,14 @@ private enum BannerState {
     case Showing, Hidden, Gone
 }
 
+/// Wheter the banner should appear at the top or the bottom of the screen.
+///
+/// - Top: The banner will appear at the top.
+/// - Bottom: The banner will appear at the bottom.
+public enum BannerPosition {
+    case Top, Bottom
+}
+
 /// A level of 'springiness' for Banners.
 ///
 /// - None: The banner will slide in and not bounce.
@@ -51,6 +59,9 @@ public class Banner: UIView {
     /// Whether or not this banner should adjust the status bar style during its presentation. Defaults to `false`.
     public var adjustsStatusBarStyle = false
     
+    /// Wheter the banner should appear at the top or the bottom of the screen. Defaults to `.Top`.
+    public var position = BannerPosition.Top
+
     /// How 'springy' the banner should display. Defaults to `.Slight`
     public var springiness = BannerSpringiness.Slight
     
@@ -275,9 +286,17 @@ public class Banner: UIView {
         guard let superview = superview where bannerState != .Gone else { return }
         commonConstraints = self.constraintsWithAttributes([.Leading, .Trailing], .Equal, to: superview)
         superview.addConstraints(commonConstraints)
-        showingConstraint = self.constraintWithAttribute(.Top, .Equal, to: .Top, of: superview)
-        let yOffset: CGFloat = -7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
-        hiddenConstraint = self.constraintWithAttribute(.Bottom, .Equal, to: .Top, of: superview, constant: yOffset)
+
+        switch self.position {
+            case .Top:
+                showingConstraint = self.constraintWithAttribute(.Top, .Equal, to: .Top, of: superview)
+                let yOffset: CGFloat = -7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
+                hiddenConstraint = self.constraintWithAttribute(.Bottom, .Equal, to: .Top, of: superview, constant: yOffset)
+            case .Bottom:
+                showingConstraint = self.constraintWithAttribute(.Bottom, .Equal, to: .Bottom, of: superview)
+                let yOffset: CGFloat = 7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
+                hiddenConstraint = self.constraintWithAttribute(.Top, .Equal, to: .Bottom, of: superview, constant: yOffset)
+        }
     }
   
     public override func layoutSubviews() {
@@ -287,7 +306,7 @@ public class Banner: UIView {
   
     private func adjustHeightOffset() {
       guard let superview = superview else { return }
-      if superview === Banner.topWindow() {
+      if superview === Banner.topWindow() && self.position == .Top {
         let statusBarSize = UIApplication.sharedApplication().statusBarFrame.size
         let heightOffset = min(statusBarSize.height, statusBarSize.width) // Arbitrary, but looks nice.
         contentTopOffsetConstraint.constant = heightOffset

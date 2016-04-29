@@ -18,6 +18,7 @@ struct BannerColors {
 
 class ViewController: UIViewController {
     @IBOutlet weak var imageSwitch: UISwitch!
+    @IBOutlet weak var positionSegmentedControl: UISegmentedControl!
     @IBOutlet weak var springinessSegmentedControl: UISegmentedControl!
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var subtitleField: UITextField!
@@ -31,10 +32,18 @@ class ViewController: UIViewController {
         let subtitle = subtitleField.text?.validated
         let banner = Banner(title: title, subtitle: subtitle, image: image, backgroundColor: color)
         banner.springiness = currentSpringiness()
+        banner.position = currentPosition()
         if inViewSwitch.on {
             banner.show(view, duration: 3.0)
         } else {
             banner.show(duration: 3.0)
+        }
+    }
+    
+    func currentPosition() -> BannerPosition {
+        switch positionSegmentedControl.selectedSegmentIndex {
+        case 0: return .Top
+        default: return .Bottom
         }
     }
     
