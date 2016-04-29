@@ -302,6 +302,7 @@ public class Banner: UIView {
     public override func layoutSubviews() {
       super.layoutSubviews()
       adjustHeightOffset()
+      layoutIfNeeded()
     }
   
     private func adjustHeightOffset() {
