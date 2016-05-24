@@ -191,8 +191,8 @@ public class Banner: UIView {
     }
     
     private func addGestureRecognizers() {
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didTap:"))
-        let swipe = UISwipeGestureRecognizer(target: self, action: "didSwipe:")
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTap(_:))))
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(_:)))
         swipe.direction = .Up
         addGestureRecognizer(swipe)
     }
