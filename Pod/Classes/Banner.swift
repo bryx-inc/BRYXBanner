@@ -35,6 +35,14 @@ public enum BannerSpringiness {
     }
 }
 
+/// Banner action selectors
+private extension Selector {
+    
+    static let bannerTapped = #selector(Banner.didTap(_:))
+    static let bannerSwiped = #selector(Banner.didSwipe(_:))
+    
+}
+
 /// Banner is a dropdown notification view that presents above the main view controller, but below the status bar.
 public class Banner: UIView {
     class func topWindow() -> UIWindow? {
@@ -202,8 +210,8 @@ public class Banner: UIView {
     }
     
     private func addGestureRecognizers() {
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didTap:"))
-        let swipe = UISwipeGestureRecognizer(target: self, action: "didSwipe:")
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: .bannerTapped))
+        let swipe = UISwipeGestureRecognizer(target: self, action: .bannerSwiped)
         swipe.direction = .Up
         addGestureRecognizer(swipe)
     }
