@@ -38,7 +38,7 @@ public enum BannerSpringiness {
 /// Banner is a dropdown notification view that presents above the main view controller, but below the status bar.
 public class Banner: UIView {
     class func topWindow() -> UIWindow? {
-        for window in UIApplication.shared().windows.reversed() {
+        for window in UIApplication.shared.windows.reversed() {
             if window.windowLevel == UIWindowLevelNormal && !window.isHidden && window.frame != CGRect.zero { return window }
         }
         return nil
@@ -66,7 +66,7 @@ public class Banner: UIView {
     public var springiness = BannerSpringiness.slight
     
     /// The color of the text as well as the image tint color if `shouldTintImage` is `true`.
-    public var textColor = UIColor.white() {
+    public var textColor = UIColor.white {
         didSet {
             resetTintColor()
         }
@@ -154,7 +154,7 @@ public class Banner: UIView {
     /// - parameter image: The image on the left of the banner. Optional. Defaults to nil.
     /// - parameter backgroundColor: The color of the banner's background view. Defaults to `UIColor.blackColor()`.
     /// - parameter didTapBlock: An action to be called when the user taps on the banner. Optional. Defaults to `nil`.
-    public required init(title: String? = nil, subtitle: String? = nil, image: UIImage? = nil, backgroundColor: UIColor = UIColor.black(), didTapBlock: (() -> ())? = nil) {
+    public required init(title: String? = nil, subtitle: String? = nil, image: UIImage? = nil, backgroundColor: UIColor = UIColor.black, didTapBlock: (() -> ())? = nil) {
         self.didTapBlock = didTapBlock
         self.image = image
         super.init(frame: CGRect.zero)
@@ -169,7 +169,7 @@ public class Banner: UIView {
     }
     
     private func forceUpdates() {
-        guard let superview = superview, showingConstraint = showingConstraint, hiddenConstraint = hiddenConstraint else { return }
+        guard let superview = superview, let showingConstraint = showingConstraint, let hiddenConstraint = hiddenConstraint else { return }
         switch bannerState {
         case .hidden:
             superview.removeConstraint(showingConstraint)
@@ -202,8 +202,8 @@ public class Banner: UIView {
     }
     
     private func addGestureRecognizers() {
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didTap:"))
-        let swipe = UISwipeGestureRecognizer(target: self, action: "didSwipe:")
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(Banner.didTap(_:))))
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(Banner.didSwipe(_:)))
         swipe.direction = .up
         addGestureRecognizer(swipe)
     }
@@ -216,7 +216,7 @@ public class Banner: UIView {
     }
     
     private func resetShadows() {
-        layer.shadowColor = UIColor.black().cgColor
+        layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = self.hasShadows ? 0.5 : 0.0
         layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.shadowRadius = 4
@@ -283,7 +283,7 @@ public class Banner: UIView {
     
     override public func didMoveToSuperview() {
         super.didMoveToSuperview()
-        guard let superview = superview where bannerState != .gone else { return }
+        guard let superview = superview, bannerState != .gone else { return }
         commonConstraints = self.constraintsWithAttributes([.leading, .trailing], .equal, to: superview)
         superview.addConstraints(commonConstraints)
 
@@ -308,7 +308,7 @@ public class Banner: UIView {
     private func adjustHeightOffset() {
       guard let superview = superview else { return }
       if superview === Banner.topWindow() && self.position == .top {
-        let statusBarSize = UIApplication.shared().statusBarFrame.size
+        let statusBarSize = UIApplication.shared.statusBarFrame.size
         let heightOffset = min(statusBarSize.height, statusBarSize.width) // Arbitrary, but looks nice.
         contentTopOffsetConstraint.constant = heightOffset
         minimumHeightConstraint.constant = statusBarSize.height > 0 ? 80 : 40
@@ -328,15 +328,15 @@ public class Banner: UIView {
         view.addSubview(self)
         forceUpdates()
         let (damping, velocity) = self.springiness.springValues
-        let oldStatusBarStyle = UIApplication.shared().statusBarStyle
+        let oldStatusBarStyle = UIApplication.shared.statusBarStyle
         if adjustsStatusBarStyle {
-          UIApplication.shared().setStatusBarStyle(preferredStatusBarStyle, animated: true)
+          UIApplication.shared.setStatusBarStyle(preferredStatusBarStyle, animated: true)
         }
         UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .allowUserInteraction, animations: {
             self.bannerState = .showing
             }, completion: { finished in
                 guard let duration = duration else { return }
-                DispatchQueue.main.after(when: DispatchTime.now() + Double(Int64(duration * TimeInterval(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(duration * TimeInterval(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
                     self.dismiss(self.adjustsStatusBarStyle ? oldStatusBarStyle : nil)
                 }
         })
@@ -348,7 +348,7 @@ public class Banner: UIView {
         UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .allowUserInteraction, animations: {
             self.bannerState = .hidden
             if let oldStatusBarStyle = oldStatusBarStyle {
-                UIApplication.shared().setStatusBarStyle(oldStatusBarStyle, animated: true)
+                UIApplication.shared.setStatusBarStyle(oldStatusBarStyle, animated: true)
             }
             }, completion: { finished in
                 self.bannerState = .gone
@@ -365,7 +365,7 @@ extension NSLayoutConstraint {
 }
 
 extension UIView {
-    func constraintsEqualToSuperview(_ edgeInsets: UIEdgeInsets = UIEdgeInsetsZero) -> [NSLayoutConstraint] {
+    func constraintsEqualToSuperview(_ edgeInsets: UIEdgeInsets = UIEdgeInsets.zero) -> [NSLayoutConstraint] {
         self.translatesAutoresizingMaskIntoConstraints = false
         var constraints = [NSLayoutConstraint]()
         if let superview = self.superview {
