@@ -25,7 +25,7 @@ class BorderedButton: UIButton {
     
     private var selectionBackgroundColor: UIColor? {
         didSet {
-            self.setTitleColor(selectionBackgroundColor, forState: .Highlighted)
+            self.setTitleColor(selectionBackgroundColor, for: .highlighted)
         }
     }
     
@@ -40,13 +40,13 @@ class BorderedButton: UIButton {
     
     override var tintColor: UIColor! {
         didSet {
-            self.setTitleColor(tintColor, forState: .Normal)
-            self.layer.borderColor = tintColor?.CGColor
+            self.setTitleColor(tintColor, for: UIControlState())
+            self.layer.borderColor = tintColor?.cgColor
         }
     }
     
     init() {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         loadView()
     }
     
@@ -60,9 +60,9 @@ class BorderedButton: UIButton {
         loadView()
     }
     
-    convenience init(title: String, tintColor: UIColor? = UIColor.lightGrayColor(), backgroundColor: UIColor? = UIColor.whiteColor()) {
-        self.init(frame: CGRectZero)
-        self.setTitle(title, forState: .Normal)
+    convenience init(title: String, tintColor: UIColor? = UIColor.lightGray, backgroundColor: UIColor? = UIColor.white) {
+        self.init(frame: CGRect.zero)
+        self.setTitle(title, for: UIControlState())
         
         ({ self.tintColor = tintColor }())
         ({ self.backgroundColor = backgroundColor }())
@@ -70,23 +70,23 @@ class BorderedButton: UIButton {
     
     private func loadView() {
         
-        super.backgroundColor = UIColor.clearColor()
+        super.backgroundColor = UIColor.clear
         
-        self.titleLabel?.font = UIFont.boldSystemFontOfSize(15.0)
+        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         
         self.borderWidth = 1.0
         self.layer.cornerRadius = borderRadius
         if let tint = self.tintColor {
-            self.layer.borderColor = tint.CGColor
+            self.layer.borderColor = tint.cgColor
         }
         
         self.layer.masksToBounds = false
         self.clipsToBounds = false
     }
     
-    override var highlighted: Bool {
+    override var isHighlighted: Bool {
         didSet {
-            if oldValue == self.highlighted { return }
+            if oldValue == self.isHighlighted { return }
             let background = self.backgroundColor
             let tint = self.tintColor
             super.backgroundColor = tint

@@ -129,6 +129,7 @@
 				TargetAttributes = {
 					DCEB2C281C3F3041003BAF35 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -316,6 +317,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bryx.BRYXBanner;
 				PRODUCT_NAME = BRYXBannerExample;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -328,6 +330,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bryx.BRYXBanner;
 				PRODUCT_NAME = BRYXBannerExample;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
