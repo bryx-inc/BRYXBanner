@@ -184,6 +184,11 @@ open class Banner: UIView {
         }
         setNeedsLayout()
         setNeedsUpdateConstraints()
+        if #available(iOS 10.0, *) {
+            superview.layoutIfNeeded()
+        } else {
+            layoutIfNeeded()
+        }
         layoutIfNeeded()
         updateConstraintsIfNeeded()
     }
