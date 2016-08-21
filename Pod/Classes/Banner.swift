@@ -190,7 +190,6 @@ open class Banner: UIView {
         } else {
             layoutIfNeeded()
         }
-        layoutIfNeeded()
         updateConstraintsIfNeeded()
     }
   
