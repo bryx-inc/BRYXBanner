@@ -25,15 +25,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var colorSegmentedControl: UISegmentedControl!
     @IBOutlet weak var inViewSwitch: UISwitch!
     
-    @IBAction func showButtonTapped(sender: UIButton) {
+    @IBAction func showButtonTapped(_ sender: UIButton) {
         let color = currentColor()
-        let image = imageSwitch.on ? UIImage(named: "Icon") : nil
+        let image = imageSwitch.isOn ? UIImage(named: "Icon") : nil
         let title = titleField.text?.validated
         let subtitle = subtitleField.text?.validated
         let banner = Banner(title: title, subtitle: subtitle, image: image, backgroundColor: color)
         banner.springiness = currentSpringiness()
         banner.position = currentPosition()
-        if inViewSwitch.on {
+        if inViewSwitch.isOn {
             banner.show(view, duration: 3.0)
         } else {
             banner.show(duration: 3.0)
@@ -42,16 +42,16 @@ class ViewController: UIViewController {
     
     func currentPosition() -> BannerPosition {
         switch positionSegmentedControl.selectedSegmentIndex {
-        case 0: return .Top
-        default: return .Bottom
+        case 0: return .top
+        default: return .bottom
         }
     }
     
     func currentSpringiness() -> BannerSpringiness {
         switch springinessSegmentedControl.selectedSegmentIndex {
-        case 0: return .None
-        case 1: return .Slight
-        default: return .Heavy
+        case 0: return .none
+        case 1: return .slight
+        default: return .heavy
         }
     }
     
