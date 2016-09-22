@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DCEB2C281C3F3041003BAF35"
-               BuildableName = "BRYXBannerExample.app"
-               BlueprintName = "BRYXBannerExample"
-               ReferencedContainer = "container:BRYXBannerExample.xcodeproj">
+               BlueprintIdentifier = "5922F047B4A7957BC568CFBD8FDFD545"
+               BuildableName = "BRYXBanner.framework"
+               BlueprintName = "BRYXBanner"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DCEB2C281C3F3041003BAF35"
-            BuildableName = "BRYXBannerExample.app"
-            BlueprintName = "BRYXBannerExample"
-            ReferencedContainer = "container:BRYXBannerExample.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -51,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DCEB2C281C3F3041003BAF35"
-            BuildableName = "BRYXBannerExample.app"
-            BlueprintName = "BRYXBannerExample"
-            ReferencedContainer = "container:BRYXBannerExample.xcodeproj">
+            BlueprintIdentifier = "5922F047B4A7957BC568CFBD8FDFD545"
+            BuildableName = "BRYXBanner.framework"
+            BlueprintName = "BRYXBanner"
+            ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,16 +60,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DCEB2C281C3F3041003BAF35"
-            BuildableName = "BRYXBannerExample.app"
-            BlueprintName = "BRYXBannerExample"
-            ReferencedContainer = "container:BRYXBannerExample.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
