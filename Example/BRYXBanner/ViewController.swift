@@ -27,12 +27,15 @@ class ViewController: UIViewController {
     
     @IBAction func showButtonTapped(_ sender: UIButton) {
         let color = currentColor()
-        let image = imageSwitch.isOn ? UIImage(named: "Icon") : nil
+        let image = imageSwitch.isOn ? #imageLiteral(resourceName: "Icon") : nil
         let title = titleField.text?.validated
         let subtitle = subtitleField.text?.validated
         let banner = Banner(title: title, subtitle: subtitle, image: image, backgroundColor: color)
         banner.springiness = currentSpringiness()
         banner.position = currentPosition()
+        banner.didTapBlock = {
+            print("Banner was tapped on \(Date())!")
+        }
         if inViewSwitch.isOn {
             banner.show(view, duration: 3.0)
         } else {

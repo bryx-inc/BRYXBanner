@@ -162,6 +162,7 @@ open class Banner: UIView {
         addGestureRecognizers()
         initializeSubviews()
         resetTintColor()
+        imageView.image = image
         titleLabel.text = title
         detailLabel.text = subtitle
         backgroundView.backgroundColor = backgroundColor
