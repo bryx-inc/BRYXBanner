@@ -54,7 +54,7 @@ Create a Cartfile in your project directory and add the following line.
 ```ruby
 github "bryx-inc/BRYXBanner"
 ```
-Run `carthage update` from the command line. This will build the framework. The framework will be within `Carthage/build/example.framework`.
+Run `carthage update` from the command line. This will build the framework. The framework will be within `Carthage/build/BRYXBanner.framework`.
 
 Add the framework to your project by going to your app's targets and selecting the General tab. Drag the built framework onto `Linked Frameworks and Libraries`
 
@@ -76,13 +76,10 @@ Now build and run. You're all set! More information on Carthage is available [he
 
 Docs are automatically generated and available [right here](http://cocoadocs.org/docsets/BRYXBanner/).
 
-## Maintainer
-
-Adam Binsz ([@adambinsz](https://github.com/adambinsz))
-
-## Author
+## Authors
 
 Harlan Haskins ([@harlanhaskins](https://github.com/harlanhaskins))
+Adam Binsz ([@adambinsz](https://github.com/adambinsz))
 
 ## License
 
