@@ -72,6 +72,9 @@ open class Banner: UIView {
         }
     }
     
+    /// The height of the banner. Default is 80.
+    open var height: CGFloat = 80
+    
     /// Whether or not the banner should show a shadow when presented.
     open var hasShadows = true {
         didSet {
@@ -242,7 +245,7 @@ open class Banner: UIView {
         ]
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(backgroundView)
-        minimumHeightConstraint = backgroundView.constraintWithAttribute(.height, .greaterThanOrEqual, to: 80)
+        minimumHeightConstraint = backgroundView.constraintWithAttribute(.height, .greaterThanOrEqual, to: height)
         addConstraint(minimumHeightConstraint) // Arbitrary, but looks nice.
         addConstraints(backgroundView.constraintsEqualToSuperview())
         backgroundView.backgroundColor = backgroundColor
@@ -317,7 +320,7 @@ open class Banner: UIView {
         let statusBarSize = UIApplication.shared.statusBarFrame.size
         let heightOffset = min(statusBarSize.height, statusBarSize.width) // Arbitrary, but looks nice.
         contentTopOffsetConstraint.constant = heightOffset
-        minimumHeightConstraint.constant = statusBarSize.height > 0 ? 80 : 40
+        minimumHeightConstraint.constant = statusBarSize.height > 0 ? height : 40
       } else {
         contentTopOffsetConstraint.constant = 0
         minimumHeightConstraint.constant = 0
