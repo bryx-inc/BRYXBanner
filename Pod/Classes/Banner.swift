@@ -293,7 +293,7 @@ open class Banner: UIView {
     override open func didMoveToSuperview() {
         super.didMoveToSuperview()
         guard let superview = superview, bannerState != .gone else { return }
-        commonConstraints = self.constraintsWithAttributes([.leading, .trailing], .equal, to: superview)
+        commonConstraints = self.constraintsWithAttributes([.width], .equal, to: superview)
         superview.addConstraints(commonConstraints)
 
         switch self.position {
