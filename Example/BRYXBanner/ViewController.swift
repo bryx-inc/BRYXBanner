@@ -24,8 +24,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var subtitleField: UITextField!
     @IBOutlet weak var colorSegmentedControl: UISegmentedControl!
     @IBOutlet weak var inViewSwitch: UISwitch!
+    @IBOutlet weak var onlyIfNoneVisibleSwitch: UISwitch!
     
     @IBAction func showButtonTapped(_ sender: UIButton) {
+        // Don't show if only none visible switch is on and a banner is showing
+        if onlyIfNoneVisibleSwitch.isOn && BannerManager.shared.isShowingBanner {
+            return
+        }
         let color = currentColor()
         let image = imageSwitch.isOn ? #imageLiteral(resourceName: "Icon") : nil
         let title = titleField.text?.validated
@@ -41,6 +46,10 @@ class ViewController: UIViewController {
         } else {
             banner.show(duration: 3.0)
         }
+    }
+    
+    @IBAction func removeAllButtonTapped(_ sender: UIButton) {
+        BannerManager.shared.dismissAllBanners()
     }
     
     func currentPosition() -> BannerPosition {

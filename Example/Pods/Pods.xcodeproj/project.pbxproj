@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		19267909327782ACF7219A3D9AD3815F /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001B831AD1CF2D3036CEE9A28C19C94 /* Banner.swift */; };
+		275E53C71F65075900858F61 /* BannerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E53C61F65075900858F61 /* BannerManager.swift */; };
 		28DA49D2F70A629EC398738E835A3DAE /* BRYXBanner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F21AEFB2BAD388B388F4A178A523F3A6 /* BRYXBanner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3097F8230408AFF0C8A79D6897F89AC6 /* Pods-BRYXBannerExample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B8239727CDB827F2E5D9B771BF5E4CF9 /* Pods-BRYXBannerExample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		978C0F6E2224BCBEB319E3225E2CD547 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
@@ -30,6 +31,7 @@
 		0001B831AD1CF2D3036CEE9A28C19C94 /* Banner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		07C442DE6FF3BD951309BCEA6670EBD4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1017C4ECAA2D10E401D73AC0024A3D50 /* Pods-BRYXBannerExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BRYXBannerExample-acknowledgements.markdown"; sourceTree = "<group>"; };
+		275E53C61F65075900858F61 /* BannerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerManager.swift; sourceTree = "<group>"; };
 		2A255CD46F854B744BCB91649F915241 /* Pods-BRYXBannerExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BRYXBannerExample.debug.xcconfig"; sourceTree = "<group>"; };
 		309DAD029DA7E4EA52EFA83821E5CDB3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		382F68D4601DEDBA7D2FE6ADA005C829 /* BRYXBanner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BRYXBanner.modulemap; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				0001B831AD1CF2D3036CEE9A28C19C94 /* Banner.swift */,
+				275E53C61F65075900858F61 /* BannerManager.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			files = (
 				19267909327782ACF7219A3D9AD3815F /* Banner.swift in Sources */,
 				9DA09CF2A43E2A16C9C7D8B9F77BDD7A /* BRYXBanner-dummy.m in Sources */,
+				275E53C71F65075900858F61 /* BannerManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
