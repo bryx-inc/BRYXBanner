@@ -7,7 +7,7 @@
 
 import UIKit
 
-private enum BannerState {
+internal enum BannerState {
     case showing, hidden, gone
 }
 
@@ -142,7 +142,7 @@ open class Banner: UIView {
         return imageView
         }()
     
-    private var bannerState = BannerState.hidden {
+    internal var bannerState = BannerState.hidden {
         didSet {
             if bannerState != oldValue {
                 forceUpdates()
@@ -334,6 +334,10 @@ open class Banner: UIView {
             print("[Banner]: Could not find view. Aborting.")
             return
         }
+        
+        // Add banner to manager
+        BannerManager.shared.banners.append(self)
+        
         view.addSubview(self)
         forceUpdates()
         let (damping, velocity) = self.springiness.springValues
@@ -354,6 +358,12 @@ open class Banner: UIView {
     /// Dismisses the banner.
     open func dismiss(_ oldStatusBarStyle: UIStatusBarStyle? = nil) {
         let (damping, velocity) = self.springiness.springValues
+        
+        // Remove banner from manager
+        if let bannerIndex = BannerManager.shared.banners.index(of: self) {
+            BannerManager.shared.banners.remove(at: bannerIndex)
+        }
+        
         UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .allowUserInteraction, animations: {
             self.bannerState = .hidden
             if let oldStatusBarStyle = oldStatusBarStyle {

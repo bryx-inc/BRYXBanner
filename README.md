@@ -27,6 +27,18 @@ banner.show(duration: 3.0)
 
 If you want the banner to persist until you call `.dismiss()`, leave the argument out of the call to `.show()`
 
+To check if any banners are currently being presented or to remove all banners, you can use the `BannerManager` class.
+
+```swift
+if !BannerManager.shared.isShowingBanner {
+    banner.show()
+} else {
+    BannerManager.shared.dismissAllBanners()
+    banner.show()
+}
+
+```
+
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
