@@ -329,8 +329,9 @@ open class Banner: UIView {
   
     /// Shows the banner. If a view is specified, the banner will be displayed at the top of that view, otherwise at top of the top window. If a `duration` is specified, the banner dismisses itself automatically after that duration elapses.
     /// - parameter view: A view the banner will be shown in. Optional. Defaults to 'nil', which in turn means it will be shown in the top window. duration A time interval, after which the banner will dismiss itself. Optional. Defaults to `nil`.
-    open func show(_ view: UIView? = Banner.topWindow(), duration: TimeInterval? = nil) {
-        guard let view = view else {
+    open func show(_ view: UIView?, duration: TimeInterval? = nil) {
+        let viewToUse = view ?? Banner.topWindow()
+        guard let view = viewToUse else {
             print("[Banner]: Could not find view. Aborting.")
             return
         }
