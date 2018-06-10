@@ -130,14 +130,7 @@ open class Banner: UIView {
     /// The label that displays the banner's title.
     @objc public let titleLabel: UILabel = {
         let label = UILabel()
-      
-        #if swift(>=4.2)
-        let textStyle = UIFont.TextStyle.headline
-        #else
-        let textStyle = UIFontTextStyle.headline
-        #endif
-      
-        label.font = UIFont.preferredFont(forTextStyle: textStyle)
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -146,14 +139,7 @@ open class Banner: UIView {
     /// The label that displays the banner's subtitle.
     @objc public let detailLabel: UILabel = {
         let label = UILabel()
-      
-        #if swift(>=4.2)
-        let textStyle = UIFont.TextStyle.subheadline
-        #else
-        let textStyle = UIFontTextStyle.subheadline
-        #endif
-      
-        label.font = UIFont.preferredFont(forTextStyle: textStyle)
+        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -403,25 +389,22 @@ open class Banner: UIView {
     }
 }
 
-extension NSLayoutConstraint {
-  #if swift(>=4.2)
-  @objc class func defaultConstraintsWithVisualFormat(_ format: String, options: NSLayoutConstraint.FormatOptions = NSLayoutConstraint.FormatOptions(), metrics: [String: AnyObject]? = nil, views: [String: AnyObject] = [:]) -> [NSLayoutConstraint] {
-        return NSLayoutConstraint.constraints(withVisualFormat: format, options: options, metrics: metrics, views: views)
-    }
-  #else
-    @objc class func defaultConstraintsWithVisualFormat(_ format: String, options: NSLayoutFormatOptions = NSLayoutFormatOptions(), metrics: [String: AnyObject]? = nil, views: [String: AnyObject] = [:]) -> [NSLayoutConstraint] {
-        return NSLayoutConstraint.constraints(withVisualFormat: format, options: options, metrics: metrics, views: views)
-    }
-  #endif
-}
 
 #if swift(>=4.2)
 typealias BRYXLayoutAttribute = NSLayoutConstraint.Attribute
-typealias BRYXLayoutRelation = NSLayoutConstraint.Relation
+typealias BRYXLayoutRelation  = NSLayoutConstraint.Relation
+typealias BRYXLayoutOptions   = NSLayoutConstraint.FormatOptions
 #else
 typealias BRYXLayoutAttribute = NSLayoutAttribute
-typealias BRYXLayoutRelation = NSLayoutRelation
+typealias BRYXLayoutRelation  = NSLayoutRelation
+typealias BRYXLayoutOptions   = NSLayoutFormatOptions
 #endif
+
+extension NSLayoutConstraint {
+  @objc class func defaultConstraintsWithVisualFormat(_ format: String, options: BRYXLayoutOptions = [], metrics: [String: AnyObject]? = nil, views: [String: AnyObject] = [:]) -> [NSLayoutConstraint] {
+    return NSLayoutConstraint.constraints(withVisualFormat: format, options: options, metrics: metrics, views: views)
+  }
+}
 
 extension UIView {
     @objc func constraintsEqualToSuperview(_ edgeInsets: UIEdgeInsets = UIEdgeInsets.zero) -> [NSLayoutConstraint] {
