@@ -291,14 +291,7 @@ open class Banner: UIView {
         
         for view in [titleLabel, detailLabel] {
             let constraintFormat = "H:|[label]-(8)-|"
-          
-            #if swift(>=4.2)
-            let options = NSLayoutConstraint.FormatOptions()
-            #else
-            let options = NSLayoutFormatOptions()
-            #endif
-          
-            contentView.addConstraints(NSLayoutConstraint.defaultConstraintsWithVisualFormat(constraintFormat, options: options, metrics: nil, views: ["label": view]))
+            contentView.addConstraints(NSLayoutConstraint.defaultConstraintsWithVisualFormat(constraintFormat, options: [], metrics: nil, views: ["label": view]))
         }
         labelView.addConstraints(NSLayoutConstraint.defaultConstraintsWithVisualFormat("V:|-(10)-[titleLabel][detailLabel]-(10)-|", views: views))
     }
