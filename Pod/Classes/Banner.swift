@@ -19,6 +19,7 @@ public enum BannerPosition {
     case top, bottom
 }
 
+
 /// A level of 'springiness' for Banners.
 ///
 /// - None: The banner will slide in and not bounce.
@@ -171,6 +172,7 @@ open class Banner: UIView {
         backgroundView.backgroundColor = backgroundColor
         backgroundView.alpha = 0.95
     }
+    
     
     private func forceUpdates() {
         guard let superview = superview, let showingConstraint = showingConstraint, let hiddenConstraint = hiddenConstraint else { return }
