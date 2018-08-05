@@ -39,7 +39,7 @@ public enum BannerSpringiness {
 open class Banner: UIView {
     @objc class func topWindow() -> UIWindow? {
         for window in UIApplication.shared.windows.reversed() {
-            if window.windowLevel == UIWindowLevelNormal && window.isKeyWindow && window.frame != CGRect.zero { return window }
+            if window.windowLevel == UIWindow.Level.normal && window.isKeyWindow && window.frame != CGRect.zero { return window }
         }
         return nil
     }
@@ -61,7 +61,7 @@ open class Banner: UIView {
     
     /// Wheter the banner should appear at the top or the bottom of the screen. Defaults to `.Top`.
     open var position = BannerPosition.top
-
+    
     /// How 'springy' the banner should display. Defaults to `.Slight`
     open var springiness = BannerSpringiness.slight
     
@@ -114,33 +114,33 @@ open class Banner: UIView {
     }
     
     /// The label that displays the banner's title.
-    @objc open let titleLabel: UILabel = {
+    @objc public let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+        label.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-        }()
+    }()
     
     /// The label that displays the banner's subtitle.
-    @objc open let detailLabel: UILabel = {
+    @objc public let detailLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
+        label.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.subheadline)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-        }()
+    }()
     
     /// The image on the left of the banner.
     @objc let image: UIImage?
     
     /// The image view that displays the `image`.
-    @objc open let imageView: UIImageView = {
+    @objc public let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
-        }()
+    }()
     
     private var bannerState = BannerState.hidden {
         didSet {
@@ -173,7 +173,7 @@ open class Banner: UIView {
     }
     
     private func forceUpdates() {
-      guard let superview = superview, let showingConstraint = showingConstraint, let hiddenConstraint = hiddenConstraint else { return }
+        guard let superview = superview, let showingConstraint = showingConstraint, let hiddenConstraint = hiddenConstraint else { return }
         switch bannerState {
         case .hidden:
             superview.removeConstraint(showingConstraint)
@@ -196,7 +196,7 @@ open class Banner: UIView {
         }
         updateConstraintsIfNeeded()
     }
-  
+    
     @objc internal func didTap(_ recognizer: UITapGestureRecognizer) {
         if dismissesOnTap {
             dismiss()
@@ -230,10 +230,10 @@ open class Banner: UIView {
         layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.shadowRadius = 4
     }
-  
+    
     private var contentTopOffsetConstraint: NSLayoutConstraint!
     private var minimumHeightConstraint: NSLayoutConstraint!
-  
+    
     private func initializeSubviews() {
         let views = [
             "backgroundView": backgroundView,
@@ -277,7 +277,7 @@ open class Banner: UIView {
         
         for view in [titleLabel, detailLabel] {
             let constraintFormat = "H:|[label]-(8)-|"
-            contentView.addConstraints(NSLayoutConstraint.defaultConstraintsWithVisualFormat(constraintFormat, options: NSLayoutFormatOptions(), metrics: nil, views: ["label": view]))
+            contentView.addConstraints(NSLayoutConstraint.defaultConstraintsWithVisualFormat(constraintFormat, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["label": view]))
         }
         labelView.addConstraints(NSLayoutConstraint.defaultConstraintsWithVisualFormat("V:|-(10)-[titleLabel][detailLabel]-(10)-|", views: views))
     }
@@ -295,38 +295,38 @@ open class Banner: UIView {
         guard let superview = superview, bannerState != .gone else { return }
         commonConstraints = self.constraintsWithAttributes([.width], .equal, to: superview)
         superview.addConstraints(commonConstraints)
-
+        
         switch self.position {
-            case .top:
-                showingConstraint = self.constraintWithAttribute(.top, .equal, to: .top, of: superview)
-                let yOffset: CGFloat = -7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
-                hiddenConstraint = self.constraintWithAttribute(.bottom, .equal, to: .top, of: superview, constant: yOffset)
-            case .bottom:
-                showingConstraint = self.constraintWithAttribute(.bottom, .equal, to: .bottom, of: superview)
-                let yOffset: CGFloat = 7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
-                hiddenConstraint = self.constraintWithAttribute(.top, .equal, to: .bottom, of: superview, constant: yOffset)
+        case .top:
+            showingConstraint = self.constraintWithAttribute(.top, .equal, to: .top, of: superview)
+            let yOffset: CGFloat = -7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
+            hiddenConstraint = self.constraintWithAttribute(.bottom, .equal, to: .top, of: superview, constant: yOffset)
+        case .bottom:
+            showingConstraint = self.constraintWithAttribute(.bottom, .equal, to: .bottom, of: superview)
+            let yOffset: CGFloat = 7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
+            hiddenConstraint = self.constraintWithAttribute(.top, .equal, to: .bottom, of: superview, constant: yOffset)
         }
     }
-  
+    
     open override func layoutSubviews() {
-      super.layoutSubviews()
-      adjustHeightOffset()
-      layoutIfNeeded()
+        super.layoutSubviews()
+        adjustHeightOffset()
+        layoutIfNeeded()
     }
-  
+    
     private func adjustHeightOffset() {
-      guard let superview = superview else { return }
-      if superview === Banner.topWindow() && self.position == .top {
-        let statusBarSize = UIApplication.shared.statusBarFrame.size
-        let heightOffset = min(statusBarSize.height, statusBarSize.width) // Arbitrary, but looks nice.
-        contentTopOffsetConstraint.constant = heightOffset
-        minimumHeightConstraint.constant = statusBarSize.height > 0 ? minimumHeight : 40
-      } else {
-        contentTopOffsetConstraint.constant = 0
-        minimumHeightConstraint.constant = 0
-      }
+        guard let superview = superview else { return }
+        if superview === Banner.topWindow() && self.position == .top {
+            let statusBarSize = UIApplication.shared.statusBarFrame.size
+            let heightOffset = min(statusBarSize.height, statusBarSize.width) // Arbitrary, but looks nice.
+            contentTopOffsetConstraint.constant = heightOffset
+            minimumHeightConstraint.constant = statusBarSize.height > 0 ? minimumHeight : 40
+        } else {
+            contentTopOffsetConstraint.constant = 0
+            minimumHeightConstraint.constant = 0
+        }
     }
-  
+    
     /// Shows the banner. If a view is specified, the banner will be displayed at the top of that view, otherwise at top of the top window. If a `duration` is specified, the banner dismisses itself automatically after that duration elapses.
     /// - parameter view: A view the banner will be shown in. Optional. Defaults to 'nil', which in turn means it will be shown in the top window. duration A time interval, after which the banner will dismiss itself. Optional. Defaults to `nil`.
     open func show(_ view: UIView? = nil, duration: TimeInterval? = nil) {
@@ -340,18 +340,18 @@ open class Banner: UIView {
         let (damping, velocity) = self.springiness.springValues
         let oldStatusBarStyle = UIApplication.shared.statusBarStyle
         if adjustsStatusBarStyle {
-          UIApplication.shared.setStatusBarStyle(preferredStatusBarStyle, animated: true)
+            UIApplication.shared.setStatusBarStyle(preferredStatusBarStyle, animated: true)
         }
         UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .allowUserInteraction, animations: {
             self.bannerState = .showing
-            }, completion: { finished in
-                guard let duration = duration else { return }
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(Int(1000.0 * duration))) {
-                    self.dismiss(self.adjustsStatusBarStyle ? oldStatusBarStyle : nil)
-                }
+        }, completion: { finished in
+            guard let duration = duration else { return }
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(Int(1000.0 * duration))) {
+                self.dismiss(self.adjustsStatusBarStyle ? oldStatusBarStyle : nil)
+            }
         })
     }
-  
+    
     /// Dismisses the banner.
     open func dismiss(_ oldStatusBarStyle: UIStatusBarStyle? = nil) {
         let (damping, velocity) = self.springiness.springValues
@@ -360,16 +360,16 @@ open class Banner: UIView {
             if let oldStatusBarStyle = oldStatusBarStyle {
                 UIApplication.shared.setStatusBarStyle(oldStatusBarStyle, animated: true)
             }
-            }, completion: { finished in
-                self.bannerState = .gone
-                self.removeFromSuperview()
-                self.didDismissBlock?()
+        }, completion: { finished in
+            self.bannerState = .gone
+            self.removeFromSuperview()
+            self.didDismissBlock?()
         })
     }
 }
 
 extension NSLayoutConstraint {
-    @objc class func defaultConstraintsWithVisualFormat(_ format: String, options: NSLayoutFormatOptions = NSLayoutFormatOptions(), metrics: [String: AnyObject]? = nil, views: [String: AnyObject] = [:]) -> [NSLayoutConstraint] {
+    @objc class func defaultConstraintsWithVisualFormat(_ format: String, options: NSLayoutConstraint.FormatOptions = NSLayoutConstraint.FormatOptions(), metrics: [String: AnyObject]? = nil, views: [String: AnyObject] = [:]) -> [NSLayoutConstraint] {
         return NSLayoutConstraint.constraints(withVisualFormat: format, options: options, metrics: metrics, views: views)
     }
 }
@@ -387,22 +387,22 @@ extension UIView {
         return constraints
     }
     
-    @objc func constraintWithAttribute(_ attribute: NSLayoutAttribute, _ relation: NSLayoutRelation, to constant: CGFloat, multiplier: CGFloat = 1.0) -> NSLayoutConstraint {
+    @objc func constraintWithAttribute(_ attribute: NSLayoutConstraint.Attribute, _ relation: NSLayoutConstraint.Relation, to constant: CGFloat, multiplier: CGFloat = 1.0) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         return NSLayoutConstraint(item: self, attribute: attribute, relatedBy: relation, toItem: nil, attribute: .notAnAttribute, multiplier: multiplier, constant: constant)
     }
     
-    @objc func constraintWithAttribute(_ attribute: NSLayoutAttribute, _ relation: NSLayoutRelation, to otherAttribute: NSLayoutAttribute, of item: AnyObject? = nil, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+    @objc func constraintWithAttribute(_ attribute: NSLayoutConstraint.Attribute, _ relation: NSLayoutConstraint.Relation, to otherAttribute: NSLayoutConstraint.Attribute, of item: AnyObject? = nil, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         return NSLayoutConstraint(item: self, attribute: attribute, relatedBy: relation, toItem: item ?? self, attribute: otherAttribute, multiplier: multiplier, constant: constant)
     }
     
-    @objc func constraintWithAttribute(_ attribute: NSLayoutAttribute, _ relation: NSLayoutRelation, to item: AnyObject, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+    @objc func constraintWithAttribute(_ attribute: NSLayoutConstraint.Attribute, _ relation: NSLayoutConstraint.Relation, to item: AnyObject, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         return NSLayoutConstraint(item: self, attribute: attribute, relatedBy: relation, toItem: item, attribute: attribute, multiplier: multiplier, constant: constant)
     }
     
-    func constraintsWithAttributes(_ attributes: [NSLayoutAttribute], _ relation: NSLayoutRelation, to item: AnyObject, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func constraintsWithAttributes(_ attributes: [NSLayoutConstraint.Attribute], _ relation: NSLayoutConstraint.Relation, to item: AnyObject, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> [NSLayoutConstraint] {
         return attributes.map { self.constraintWithAttribute($0, relation, to: item, multiplier: multiplier, constant: constant) }
     }
 }
