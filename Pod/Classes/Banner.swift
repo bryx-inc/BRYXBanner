@@ -120,7 +120,7 @@ open class Banner: UIView {
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-        }()
+    }()
     
     /// The label that displays the banner's subtitle.
     @objc open let detailLabel: UILabel = {
@@ -129,7 +129,7 @@ open class Banner: UIView {
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-        }()
+    }()
     
     /// The image on the left of the banner.
     @objc let image: UIImage?
@@ -140,8 +140,15 @@ open class Banner: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
-        }()
-    
+    }()
+
+    /// Whether or not the banner should has blured background. Keep in mind, this will clear your background color
+    open var blurStyle: UIBlurEffectStyle? = nil {
+        didSet{
+            updateBlur()
+        }
+    }
+
     private var bannerState = BannerState.hidden {
         didSet {
             if bannerState != oldValue {
@@ -170,6 +177,21 @@ open class Banner: UIView {
         detailLabel.text = subtitle
         backgroundView.backgroundColor = backgroundColor
         backgroundView.alpha = 0.95
+
+    }
+
+    private func updateBlur() {
+        guard let style = blurStyle else { return }
+        let bluredBackground = UIVisualEffectView(effect: UIBlurEffect(style: style))
+        insertSubview(bluredBackground, at: 0)
+        bluredBackground.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            bluredBackground.constraintWithAttribute(.leading, .equal, to: self, constant: 0),
+            bluredBackground.constraintWithAttribute(.top, .equal, to: self, constant: 0),
+            bluredBackground.constraintWithAttribute(.trailing, .equal, to: self, constant: 0),
+            bluredBackground.constraintWithAttribute(.bottom, .equal, to: self, constant: 0),
+        ])
+        backgroundView.backgroundColor = .clear
     }
     
     private func forceUpdates() {

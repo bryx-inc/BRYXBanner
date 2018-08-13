@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var subtitleField: UITextField!
     @IBOutlet weak var colorSegmentedControl: UISegmentedControl!
     @IBOutlet weak var inViewSwitch: UISwitch!
+    @IBOutlet weak var blurSegmentControl: UISegmentedControl!
     
     @IBAction func showButtonTapped(_ sender: UIButton) {
         let color = currentColor()
@@ -31,6 +32,8 @@ class ViewController: UIViewController {
         let title = titleField.text?.validated
         let subtitle = subtitleField.text?.validated
         let banner = Banner(title: title, subtitle: subtitle, image: image, backgroundColor: color)
+        banner.blurStyle = currentBlurStyle()
+
         banner.springiness = currentSpringiness()
         banner.position = currentPosition()
         banner.didTapBlock = {
@@ -64,6 +67,15 @@ class ViewController: UIViewController {
         case 1: return BannerColors.green
         case 2: return BannerColors.yellow
         default: return BannerColors.blue
+        }
+    }
+
+    func currentBlurStyle() -> UIBlurEffectStyle? {
+        switch blurSegmentControl.selectedSegmentIndex {
+        case 1: return .light
+        case 2: return .extraLight
+        case 3: return .dark
+        default: return nil
         }
     }
     
