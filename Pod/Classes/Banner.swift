@@ -35,6 +35,31 @@ public enum BannerSpringiness {
     }
 }
 
+/// Class to hold status of displayed Banners.
+private class BannerDispatcher {
+    /// Contains all currently displayed Banners
+    fileprivate static var bannerStack: [Banner] = []
+    
+    /// Called, when dismiss() was called on a Banner.
+    static func wasHidden(_ banner: Banner) {
+        guard let index = bannerStack.index(of: banner) else {
+            return
+        }
+        bannerStack.remove(at: index)
+    }
+    
+    /// Called, when show() was called on a Banner.
+    /// - parameter banner: The Banner that was shown
+    static func wasShown(_ banner: Banner) {
+        bannerStack.append(banner)
+    }
+    
+    /// Called to dermine if a Banner is currently displayed.
+    static func isDisplayingBanner() -> Bool {
+        return !bannerStack.isEmpty
+    }
+}
+
 /// Banner is a dropdown notification view that presents above the main view controller, but below the status bar.
 open class Banner: UIView {
     @objc class func topWindow() -> UIWindow? {
@@ -328,8 +353,13 @@ open class Banner: UIView {
     }
   
     /// Shows the banner. If a view is specified, the banner will be displayed at the top of that view, otherwise at top of the top window. If a `duration` is specified, the banner dismisses itself automatically after that duration elapses.
-    /// - parameter view: A view the banner will be shown in. Optional. Defaults to 'nil', which in turn means it will be shown in the top window. duration A time interval, after which the banner will dismiss itself. Optional. Defaults to `nil`.
-    open func show(_ view: UIView? = nil, duration: TimeInterval? = nil) {
+    /// - parameter view: A view the banner will be shown in. Optional. Defaults to 'nil', which in turn means it will be shown in the top window.
+    /// - parameter duration: A time interval, after which the banner will dismiss itself. Optional. Defaults to `nil`.
+    /// - parameter force: A bool to specify if Banner should be shown if there's another Banner already displayed (regardless, which view).
+    open func show(_ view: UIView? = nil, duration: TimeInterval? = nil, force: Bool = true) {
+        // check, if other banner is already displayed or force it
+        guard !BannerDispatcher.isDisplayingBanner() || force else { return }
+        
         let viewToUse = view ?? Banner.topWindow()
         guard let view = viewToUse else {
             print("[Banner]: Could not find view. Aborting.")
@@ -344,6 +374,7 @@ open class Banner: UIView {
         }
         UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .allowUserInteraction, animations: {
             self.bannerState = .showing
+            BannerDispatcher.wasShown(self)
             }, completion: { finished in
                 guard let duration = duration else { return }
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(Int(1000.0 * duration))) {
@@ -364,7 +395,13 @@ open class Banner: UIView {
                 self.bannerState = .gone
                 self.removeFromSuperview()
                 self.didDismissBlock?()
+                BannerDispatcher.wasHidden(self)
         })
+    }
+    
+    /// Dismisses all currently displayed banners.
+    static open func dismissAll() {
+        BannerDispatcher.bannerStack.forEach { $0.dismiss() }
     }
 }
 
