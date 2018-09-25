@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43BE501A0F4AFA89CD172717 /* Pods_BRYXBannerExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D416D8E28CD0B557A1E66D5 /* Pods_BRYXBannerExample.framework */; };
+		2552720B15414760CCA840CF /* Pods_BRYXBannerExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3ABB6A875426DDC34BA7D0D /* Pods_BRYXBannerExample.framework */; };
 		DCEB2C2D1C3F3041003BAF35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEB2C2C1C3F3041003BAF35 /* AppDelegate.swift */; };
 		DCEB2C2F1C3F3041003BAF35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEB2C2E1C3F3041003BAF35 /* ViewController.swift */; };
 		DCEB2C341C3F3041003BAF35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCEB2C331C3F3041003BAF35 /* Assets.xcassets */; };
@@ -16,11 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2D4B2FAD0FFA79CC218320BC /* Pods-BRYXBanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRYXBanner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BRYXBanner/Pods-BRYXBanner.debug.xcconfig"; sourceTree = "<group>"; };
-		3D416D8E28CD0B557A1E66D5 /* Pods_BRYXBannerExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BRYXBannerExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5579572A0E8F8316AFEA873A /* Pods-BRYXBannerExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRYXBannerExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BRYXBannerExample/Pods-BRYXBannerExample.debug.xcconfig"; sourceTree = "<group>"; };
-		83658E5765269762F8E4755D /* Pods_BRYXBanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BRYXBanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0B0BEBC6CD17E26DD702F49 /* Pods-BRYXBannerExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRYXBannerExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-BRYXBannerExample/Pods-BRYXBannerExample.release.xcconfig"; sourceTree = "<group>"; };
+		60168C53DDA6CD46BD33C170 /* Pods-BRYXBannerExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRYXBannerExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BRYXBannerExample/Pods-BRYXBannerExample.debug.xcconfig"; sourceTree = "<group>"; };
+		9313F24DB76E9B4351DC8514 /* Pods-BRYXBannerExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRYXBannerExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-BRYXBannerExample/Pods-BRYXBannerExample.release.xcconfig"; sourceTree = "<group>"; };
 		DCEB2C291C3F3041003BAF35 /* BRYXBannerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BRYXBannerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCEB2C2C1C3F3041003BAF35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCEB2C2E1C3F3041003BAF35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -28,7 +25,7 @@
 		DCEB2C381C3F3041003BAF35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCEB2C5A1C3F3064003BAF35 /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		DCEB2C5C1C3F3120003BAF35 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		DF0355871DB291B48778E59D /* Pods-BRYXBanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRYXBanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-BRYXBanner/Pods-BRYXBanner.release.xcconfig"; sourceTree = "<group>"; };
+		F3ABB6A875426DDC34BA7D0D /* Pods_BRYXBannerExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BRYXBannerExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,31 +33,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43BE501A0F4AFA89CD172717 /* Pods_BRYXBannerExample.framework in Frameworks */,
+				2552720B15414760CCA840CF /* Pods_BRYXBannerExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5C61A583F5C326D45CF08FFC /* Pods */ = {
+		3914F2F25BE49F763EFFF41B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2D4B2FAD0FFA79CC218320BC /* Pods-BRYXBanner.debug.xcconfig */,
-				DF0355871DB291B48778E59D /* Pods-BRYXBanner.release.xcconfig */,
-				5579572A0E8F8316AFEA873A /* Pods-BRYXBannerExample.debug.xcconfig */,
-				C0B0BEBC6CD17E26DD702F49 /* Pods-BRYXBannerExample.release.xcconfig */,
+				60168C53DDA6CD46BD33C170 /* Pods-BRYXBannerExample.debug.xcconfig */,
+				9313F24DB76E9B4351DC8514 /* Pods-BRYXBannerExample.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		6927B38119B33E8B4702CE60 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				83658E5765269762F8E4755D /* Pods_BRYXBanner.framework */,
-				3D416D8E28CD0B557A1E66D5 /* Pods_BRYXBannerExample.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		DCEB2C201C3F3041003BAF35 = {
@@ -68,8 +54,8 @@
 			children = (
 				DCEB2C2B1C3F3041003BAF35 /* BRYXBanner */,
 				DCEB2C2A1C3F3041003BAF35 /* Products */,
-				5C61A583F5C326D45CF08FFC /* Pods */,
-				6927B38119B33E8B4702CE60 /* Frameworks */,
+				3914F2F25BE49F763EFFF41B /* Pods */,
+				E04F2991B63F19E724EB4DAC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +80,14 @@
 			path = BRYXBanner;
 			sourceTree = "<group>";
 		};
+		E04F2991B63F19E724EB4DAC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3ABB6A875426DDC34BA7D0D /* Pods_BRYXBannerExample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -101,13 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DCEB2C511C3F3042003BAF35 /* Build configuration list for PBXNativeTarget "BRYXBannerExample" */;
 			buildPhases = (
-				64BE5151BC198851B3B9BBF1 /* [CP] Check Pods Manifest.lock */,
+				AD0E64232E15CDC84604034F /* [CP] Check Pods Manifest.lock */,
 				DCEB2C251C3F3041003BAF35 /* Sources */,
 				DCEB2C261C3F3041003BAF35 /* Frameworks */,
 				DCEB2C271C3F3041003BAF35 /* Resources */,
-				E4F6B6B00BFD04754109CEA1 /* [CP] Embed Pods Frameworks */,
-				30493477875F4A81D846D330 /* [CP] Copy Pods Resources */,
-				A61906BCC14F20DECFFE7AB6 /* Embed Pods Frameworks */,
+				0D8A97AA7FEC300E1BFE20CA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,12 +117,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Bryx, Inc";
 				TargetAttributes = {
 					DCEB2C281C3F3041003BAF35 = {
 						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -165,64 +157,48 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		30493477875F4A81D846D330 /* [CP] Copy Pods Resources */ = {
+		0D8A97AA7FEC300E1BFE20CA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BRYXBannerExample/Pods-BRYXBannerExample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		64BE5151BC198851B3B9BBF1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputFileListPaths = (
 			);
 			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		A61906BCC14F20DECFFE7AB6 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BRYXBannerExample/Pods-BRYXBannerExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E4F6B6B00BFD04754109CEA1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BRYXBannerExample/Pods-BRYXBannerExample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BRYXBanner/BRYXBanner.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BRYXBanner.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BRYXBannerExample/Pods-BRYXBannerExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD0E64232E15CDC84604034F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BRYXBannerExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -249,14 +225,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -296,14 +280,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -331,7 +323,7 @@
 		};
 		DCEB2C521C3F3042003BAF35 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5579572A0E8F8316AFEA873A /* Pods-BRYXBannerExample.debug.xcconfig */;
+			baseConfigurationReference = 60168C53DDA6CD46BD33C170 /* Pods-BRYXBannerExample.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -341,13 +333,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bryx.BRYXBanner;
 				PRODUCT_NAME = BRYXBannerExample;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
 		DCEB2C531C3F3042003BAF35 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C0B0BEBC6CD17E26DD702F49 /* Pods-BRYXBannerExample.release.xcconfig */;
+			baseConfigurationReference = 9313F24DB76E9B4351DC8514 /* Pods-BRYXBannerExample.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -357,7 +350,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bryx.BRYXBanner;
 				PRODUCT_NAME = BRYXBannerExample;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

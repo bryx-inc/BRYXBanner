@@ -40,7 +40,7 @@ class BorderedButton: UIButton {
     
     override var tintColor: UIColor! {
         didSet {
-            self.setTitleColor(tintColor, for: UIControlState())
+            self.setTitleColor(tintColor, for: UIControl.State())
             self.layer.borderColor = tintColor?.cgColor
         }
     }
@@ -62,7 +62,7 @@ class BorderedButton: UIButton {
     
     convenience init(title: String, tintColor: UIColor? = UIColor.lightGray, backgroundColor: UIColor? = UIColor.white) {
         self.init(frame: CGRect.zero)
-        self.setTitle(title, for: UIControlState())
+        self.setTitle(title, for: UIControl.State())
         
         ({ self.tintColor = tintColor }())
         ({ self.backgroundColor = backgroundColor }())
