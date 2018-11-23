@@ -1,7 +1,6 @@
 
 //  Created by Hoorad on 10/29/18.
-//  Copyright © 2018 Hoorad. All rights reserved.
-//
+//  A Simple Extention
 
 import Foundation
 import UIKit
@@ -10,10 +9,12 @@ import Foundation
 import SwiftMessages
 import UIKit
 
-// Mark: - Show Alert Banner
+//Mark: - Show Alert Banner
 
 extension UIViewController {
     
+    
+    //Mark: - Config Setup
     
     enum Bannerlayout{
         case messageView
@@ -40,6 +41,7 @@ extension UIViewController {
         
         
     }
+    
     
     func ShowBannerWithParameters(title:String,body:String,backgroundColor:UIColor,Bannerlayout:Bannerlayout,BannerpresentationStyle:BannerpresentationStyle,duration:Double){
         
@@ -151,6 +153,6 @@ extension UIViewController {
         SwiftMessages.show(config: config, view: view)
         
     }
-        
+    
     
 }
