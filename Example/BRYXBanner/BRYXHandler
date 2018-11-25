@@ -1,0 +1,157 @@
+
+//  Created by Hoorad on 10/29/18.
+//  A Simple Extention
+
+import Foundation
+import UIKit
+
+import Foundation
+import SwiftMessages
+import UIKit
+
+//Mark: - Show Alert Banner
+
+extension UIViewController {
+    
+    
+    //Mark: - Config Setup
+    
+    enum Bannerlayout{
+        case messageView
+        case cardView
+        case tabView
+        case messageView
+        case centeredView
+    }
+    
+    enum BannerpresentationStyle{
+        case button
+        case top
+        case center
+    }
+    
+    enum BannerType{
+        case Faild_Network
+        case Faild_Request
+        case Wrong_Data
+        case Wrong_UserOrPass
+        case Try_Again
+        case inProgress
+        case inComplete
+        
+        
+    }
+    
+    
+    func ShowBannerWithParameters(title:String,body:String,backgroundColor:UIColor,Bannerlayout:Bannerlayout,BannerpresentationStyle:BannerpresentationStyle,duration:Double){
+        
+        let view: MessageView
+        switch Bannerlayout{
+        case .cardView:
+            view = MessageView.viewFromNib(layout: .cardView)
+        case .tabView:
+            view = MessageView.viewFromNib(layout: .tabView)
+        case .messageView:
+            view = MessageView.viewFromNib(layout: .statusLine)
+        case .messageView:
+            view = MessageView.viewFromNib(layout: .messageView)
+        case .centeredView:
+            view = MessageView.viewFromNib(layout: .centeredView)
+            
+        }
+        
+        view.configureContent(title: title, body: body, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "", buttonTapHandler: { _ in SwiftMessages.hide() })
+        view.bodyLabel?.textAlignment = .right
+        view.titleLabel?.textAlignment = .right
+        
+        //view.configureTheme(.warning, iconStyle: .light)
+        
+        let iconText = [""]
+        view.configureTheme(backgroundColor: backgroundColor, foregroundColor: UIColor.white, iconImage: nil, iconText: iconText.first)
+        view.button?.setTitle(nil, for: .normal)
+        view.button?.backgroundColor = UIColor.clear
+        view.button?.tintColor = UIColor.green.withAlphaComponent(0.7)
+        view.bodyLabel?.font = UIFont.systemFontSize
+        view.titleLabel?.font = UIFont.systemFontSize
+        view.button?.isHidden = true
+        view.iconImageView?.isHidden = false
+        view.iconLabel?.isHidden = false
+        view.titleLabel?.isHidden = false
+        view.bodyLabel?.isHidden = true
+        
+        
+        var config = SwiftMessages.defaultConfig
+        
+        switch BannerpresentationStyle {
+        case .button:
+            config.presentationStyle = .bottom
+        case .top:
+            config.presentationStyle = .top
+        default:
+            config.presentationStyle = .center
+            break
+        }
+        
+        
+        config.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+        config.duration = .seconds(seconds: duration)
+        SwiftMessages.show(config: config, view: view)
+        
+        
+    }
+    
+    func ShowBannerWithElement(BannerType:BannerType){
+        
+        var title = ""
+        var body = ""
+        
+        
+        switch BannerType {
+        case .Faild_Network:
+            title = "Check Network"
+            body = "Alert"
+            var backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+        case .Faild_Request:
+            title = "Try again"
+            body = "Alert"
+            var backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+        case .Wrong_Data:
+            title = "Check your input"
+            body = "Alert"
+            var backgroundColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+        }
+        
+        
+        let view: MessageView
+        view = MessageView.viewFromNib(layout: .cardView)
+        
+        
+        view.configureContent(title: title, body: body, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "", buttonTapHandler: { _ in SwiftMessages.hide() })
+        view.bodyLabel?.textAlignment = .right
+        view.titleLabel?.textAlignment = .right
+        
+        //view.configureTheme(.warning, iconStyle: .light)
+        
+        let iconText = [""]
+        view.configureTheme(backgroundColor: backgroundColor, foregroundColor: UIColor.white, iconImage: nil, iconText: iconText.first)
+        view.button?.setTitle(nil, for: .normal)
+        view.button?.backgroundColor = UIColor.clear
+        view.button?.tintColor = UIColor.green.withAlphaComponent(0.7)
+        view.bodyLabel?.font = UIFont.systemFontSize
+        view.titleLabel?.font = UIFont.systemFontSize
+        view.button?.isHidden = true
+        view.iconImageView?.isHidden = false
+        view.iconLabel?.isHidden = false
+        view.titleLabel?.isHidden = false
+        view.bodyLabel?.isHidden = true
+        
+        var config = SwiftMessages.defaultConfig
+        config.presentationStyle = .top
+        
+        config.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+        config.duration = .seconds(seconds: 2.5)
+        SwiftMessages.show(config: config, view: view)
+        
+    }
+    
+}
