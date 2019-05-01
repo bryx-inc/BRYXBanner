@@ -25,6 +25,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var colorSegmentedControl: UISegmentedControl!
     @IBOutlet weak var inViewSwitch: UISwitch!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
     @IBAction func showButtonTapped(_ sender: UIButton) {
         let color = currentColor()
         let image = imageSwitch.isOn ? #imageLiteral(resourceName: "Icon") : nil
@@ -65,6 +71,10 @@ class ViewController: UIViewController {
         case 2: return BannerColors.yellow
         default: return BannerColors.blue
         }
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
 }
