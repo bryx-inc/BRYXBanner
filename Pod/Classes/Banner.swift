@@ -362,19 +362,18 @@ open class Banner: UIView {
   
     /// Dismisses the banner.
     open func dismiss(_ oldStatusBarStyle: UIStatusBarStyle? = nil) {
-        if bannerState == .showing {
-            let (damping, velocity) = self.springiness.springValues
-            UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .allowUserInteraction, animations: {
-                self.bannerState = .hidden
-                if let oldStatusBarStyle = oldStatusBarStyle {
-                    UIApplication.shared.setStatusBarStyle(oldStatusBarStyle, animated: true)
-                }
-                }, completion: { finished in
-                    self.bannerState = .gone
-                    self.removeFromSuperview()
-                    self.didDismissBlock?()
-            })
-        }
+        guard bannerState == .showing else { return }
+        let (damping, velocity) = self.springiness.springValues
+        UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .allowUserInteraction, animations: {
+            self.bannerState = .hidden
+            if let oldStatusBarStyle = oldStatusBarStyle {
+                UIApplication.shared.setStatusBarStyle(oldStatusBarStyle, animated: true)
+            }
+            }, completion: { finished in
+                self.bannerState = .gone
+                self.removeFromSuperview()
+                self.didDismissBlock?()
+        })
     }
 }
 
