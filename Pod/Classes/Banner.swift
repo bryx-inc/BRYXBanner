@@ -56,12 +56,17 @@ open class Banner: UIView {
     /// If the banner's `adjustsStatusBarStyle` is false, this property does nothing.
     @objc open var preferredStatusBarStyle = UIStatusBarStyle.lightContent
     
+    /// The style of the status bar before display of the banner. Defaults to `nil`.
+    ///
+    /// If the banner's `adjustsStatusBarStyle` is false, this property contains nothing.
+    private var oldStatusBarStyle: UIStatusBarStyle? = nil
+    
     /// Whether or not this banner should adjust the status bar style during its presentation. Defaults to `false`.
     @objc open var adjustsStatusBarStyle = false
     
     /// Wheter the banner should appear at the top or the bottom of the screen. Defaults to `.Top`.
     open var position = BannerPosition.top
-
+    
     /// How 'springy' the banner should display. Defaults to `.Slight`
     open var springiness = BannerSpringiness.slight
     
@@ -120,7 +125,7 @@ open class Banner: UIView {
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-        }()
+    }()
     
     /// The label that displays the banner's subtitle.
     @objc public let detailLabel: UILabel = {
@@ -129,7 +134,7 @@ open class Banner: UIView {
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-        }()
+    }()
     
     /// The image on the left of the banner.
     @objc let image: UIImage?
@@ -140,7 +145,7 @@ open class Banner: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
-        }()
+    }()
     
     private var bannerState = BannerState.hidden {
         didSet {
@@ -173,7 +178,7 @@ open class Banner: UIView {
     }
     
     private func forceUpdates() {
-      guard let superview = superview, let showingConstraint = showingConstraint, let hiddenConstraint = hiddenConstraint else { return }
+        guard let superview = superview, let showingConstraint = showingConstraint, let hiddenConstraint = hiddenConstraint else { return }
         switch bannerState {
         case .hidden:
             superview.removeConstraint(showingConstraint)
@@ -196,7 +201,7 @@ open class Banner: UIView {
         }
         updateConstraintsIfNeeded()
     }
-  
+    
     @objc internal func didTap(_ recognizer: UITapGestureRecognizer) {
         if dismissesOnTap {
             dismiss()
@@ -230,11 +235,11 @@ open class Banner: UIView {
         layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.shadowRadius = 4
     }
-  
+    
     private var contentTopOffsetConstraint: NSLayoutConstraint!
     private var contentBottomOffsetConstraint: NSLayoutConstraint!
     private var minimumHeightConstraint: NSLayoutConstraint!
-  
+    
     private func initializeSubviews() {
         let views = [
             "backgroundView": backgroundView,
@@ -297,44 +302,44 @@ open class Banner: UIView {
         guard let superview = superview, bannerState != .gone else { return }
         commonConstraints = self.constraintsWithAttributes([.width], .equal, to: superview)
         superview.addConstraints(commonConstraints)
-
+        
         switch self.position {
-            case .top:
-                showingConstraint = self.constraintWithAttribute(.top, .equal, to: .top, of: superview)
-                let yOffset: CGFloat = -7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
-                hiddenConstraint = self.constraintWithAttribute(.bottom, .equal, to: .top, of: superview, constant: yOffset)
-            case .bottom:
-                showingConstraint = self.constraintWithAttribute(.bottom, .equal, to: .bottom, of: superview)
-                let yOffset: CGFloat = 7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
-                hiddenConstraint = self.constraintWithAttribute(.top, .equal, to: .bottom, of: superview, constant: yOffset)
+        case .top:
+            showingConstraint = self.constraintWithAttribute(.top, .equal, to: .top, of: superview)
+            let yOffset: CGFloat = -7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
+            hiddenConstraint = self.constraintWithAttribute(.bottom, .equal, to: .top, of: superview, constant: yOffset)
+        case .bottom:
+            showingConstraint = self.constraintWithAttribute(.bottom, .equal, to: .bottom, of: superview)
+            let yOffset: CGFloat = 7.0 // Offset the bottom constraint to make room for the shadow to animate off screen.
+            hiddenConstraint = self.constraintWithAttribute(.top, .equal, to: .bottom, of: superview, constant: yOffset)
         }
     }
-  
+    
     open override func layoutSubviews() {
-      super.layoutSubviews()
-      adjustHeightOffset()
-      layoutIfNeeded()
+        super.layoutSubviews()
+        adjustHeightOffset()
+        layoutIfNeeded()
     }
-  
+    
     private func adjustHeightOffset() {
-      guard let superview = superview else { return }
-      if superview === Banner.topWindow() && self.position == .top {
-        let statusBarSize = UIApplication.shared.statusBarFrame.size
-        let heightOffset = min(statusBarSize.height, statusBarSize.width) // Arbitrary, but looks nice.
-        contentTopOffsetConstraint.constant = heightOffset
-        contentBottomOffsetConstraint.constant = 0
-        minimumHeightConstraint.constant = statusBarSize.height > 0 ? minimumHeight : 40
-      } else {
-        var bottomSpacing: CGFloat = 0
-        if #available(iOS 11.0, *) {
-            bottomSpacing = safeAreaInsets.bottom // handle the safe area for iPhone X models
+        guard let superview = superview else { return }
+        if superview === Banner.topWindow() && self.position == .top {
+            let statusBarSize = UIApplication.shared.statusBarFrame.size
+            let heightOffset = min(statusBarSize.height, statusBarSize.width) // Arbitrary, but looks nice.
+            contentTopOffsetConstraint.constant = heightOffset
+            contentBottomOffsetConstraint.constant = 0
+            minimumHeightConstraint.constant = statusBarSize.height > 0 ? minimumHeight : 40
+        } else {
+            var bottomSpacing: CGFloat = 0
+            if #available(iOS 11.0, *) {
+                bottomSpacing = safeAreaInsets.bottom // handle the safe area for iPhone X models
+            }
+            contentTopOffsetConstraint.constant = 0
+            contentBottomOffsetConstraint.constant = -bottomSpacing
+            minimumHeightConstraint.constant = 0
         }
-        contentTopOffsetConstraint.constant = 0
-        contentBottomOffsetConstraint.constant = -bottomSpacing
-        minimumHeightConstraint.constant = 0
-      }
     }
-  
+    
     /// Shows the banner. If a view is specified, the banner will be displayed at the top of that view, otherwise at top of the top window. If a `duration` is specified, the banner dismisses itself automatically after that duration elapses.
     /// - parameter view: A view the banner will be shown in. Optional. Defaults to 'nil', which in turn means it will be shown in the top window. duration A time interval, after which the banner will dismiss itself. Optional. Defaults to `nil`.
     open func show(_ view: UIView? = nil, duration: TimeInterval? = nil) {
@@ -346,33 +351,35 @@ open class Banner: UIView {
         view.addSubview(self)
         forceUpdates()
         let (damping, velocity) = self.springiness.springValues
-        let oldStatusBarStyle = UIApplication.shared.statusBarStyle
         if adjustsStatusBarStyle {
-          UIApplication.shared.setStatusBarStyle(preferredStatusBarStyle, animated: true)
+            oldStatusBarStyle = UIApplication.shared.statusBarStyle
+            UIApplication.shared.setStatusBarStyle(preferredStatusBarStyle, animated: true)
+        } else {
+            oldStatusBarStyle = nil
         }
         UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .allowUserInteraction, animations: {
             self.bannerState = .showing
-            }, completion: { finished in
-                guard let duration = duration else { return }
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(Int(1000.0 * duration))) {
-                    self.dismiss(self.adjustsStatusBarStyle ? oldStatusBarStyle : nil)
-                }
+        }, completion: { finished in
+            guard let duration = duration else { return }
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(Int(1000.0 * duration))) {
+                self.dismiss()
+            }
         })
     }
-  
+    
     /// Dismisses the banner.
-    open func dismiss(_ oldStatusBarStyle: UIStatusBarStyle? = nil) {
+    open func dismiss() {
         guard bannerState == .showing else { return }
         let (damping, velocity) = self.springiness.springValues
         UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .allowUserInteraction, animations: {
             self.bannerState = .hidden
-            if let oldStatusBarStyle = oldStatusBarStyle {
+            if self.adjustsStatusBarStyle, let oldStatusBarStyle = self.oldStatusBarStyle {
                 UIApplication.shared.setStatusBarStyle(oldStatusBarStyle, animated: true)
             }
-            }, completion: { finished in
-                self.bannerState = .gone
-                self.removeFromSuperview()
-                self.didDismissBlock?()
+        }, completion: { finished in
+            self.bannerState = .gone
+            self.removeFromSuperview()
+            self.didDismissBlock?()
         })
     }
 }
