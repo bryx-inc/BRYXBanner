@@ -13,7 +13,7 @@ A lightweight dropdown banner for iOS 7+.
 
 Import `BRYXBanner`
 
-```rust
+```swift
 import BRYXBanner
 ```
 
@@ -41,7 +41,7 @@ BRYXBanner is available through [CocoaPods](http://cocoapods.org) and [Carthage]
 
 To install it, simply add the following line to your Podfile:
 
-```ruby
+```swift
 pod 'BRYXBanner'
 ```
 
@@ -51,7 +51,7 @@ If you need to support iOS 7, just copy `Banner.swift` into your Xcode project.
 
 Create a Cartfile in your project directory and add the following line.
 
-```ruby
+```swift
 github "bryx-inc/BRYXBanner"
 ```
 Run `carthage update` from the command line. This will build the framework. The framework will be within `Carthage/build/BRYXBanner.framework`.
@@ -71,10 +71,9 @@ $(SRCROOT)/Carthage/Build/iOS/BRYXBanner.framework
 
 Now build and run. You're all set! More information on Carthage is available [here](https://github.com/Carthage/Carthage).
 
+### Swift Package Manager
 
-## Documentation
-
-Docs are automatically generated and available [right here](http://cocoadocs.org/docsets/BRYXBanner/).
+Swift Package Manager integrates withj Xcode. To add BRYXBanner to your iOS project open your project in Xcode and select **File > Swift Packages > Add Package Dependency** and enter `git@github.com:bryx-inc/BRYXBanner.git` in the search bar.
 
 ## Authors
 
