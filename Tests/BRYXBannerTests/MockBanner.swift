@@ -5,9 +5,10 @@
 //  Created by Anthony Miller on 11/12/15.
 //
 
-import Foundation
+import UIKit
+import BRYXBanner
 
-private let MockBannerShownNotificationName = "MockBannerShownNotification"
+private let MockBannerShownNotificationName = NSNotification.Name("MockBannerShownNotification")
 
 /// This mock banner can be used in place of a `Banner` in unit tests in order to verify that it will be displayed.
 public class MockBanner: Banner {
@@ -15,9 +16,9 @@ public class MockBanner: Banner {
   /// The view that the banner is shown in. Captured from the `view` parameter in the `show(view: duration:)` method
   var viewForBanner: UIView?
   
-  override public func show(view: UIView? = MockBanner.topWindow(), duration: NSTimeInterval? = nil) {
-    viewForBanner = view
-    NSNotificationCenter.defaultCenter().postNotificationName(MockBannerShownNotificationName, object: self)
+    override public func show(_ view: UIView? = MockBanner.topWindow(), duration: TimeInterval? = nil) {
+        viewForBanner = view
+        NotificationCenter.default.post(name: MockBannerShownNotificationName, object: self)
   }
   
 }
@@ -31,18 +32,19 @@ public class MockBannerVerifier: NSObject {
   override init() {
     super.init()
     
-    NSNotificationCenter.defaultCenter().addObserver(self,
-      selector: "bannerShown:",
-      name: MockBannerShownNotificationName,
-      object: nil)
+    NotificationCenter.default.addObserver(
+        self,
+        selector: #selector(bannerShown(notification:)),
+        name: MockBannerShownNotificationName,
+        object: nil
+    )
   }
-  
   
   deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(self)
+      NotificationCenter.default.removeObserver(self)
   }
   
-  func bannerShown(notification: NSNotification) {
+  @objc func bannerShown(notification: NSNotification) {
     if let banner = notification.object as? MockBanner {
       bannerShown = banner
     }
