@@ -324,11 +324,20 @@ open class Banner: UIView {
     private func adjustHeightOffset() {
         guard let superview = superview else { return }
         if superview === Banner.topWindow() && self.position == .top {
-            let statusBarSize = UIApplication.shared.statusBarFrame.size
-            let heightOffset = min(statusBarSize.height, statusBarSize.width) // Arbitrary, but looks nice.
+            #if os(xrOS)
+            let heightOffset = superview.safeAreaInsets.top
+            #else
+            var heightOffset: CGFloat = 0
+            if #available(iOS 11.0, *) {
+                heightOffset = superview.safeAreaInsets.top
+            } else {
+                let statusBarSize = UIApplication.shared.statusBarFrame.size
+                heightOffset = min(statusBarSize.height, statusBarSize.width) // Arbitrary, but looks nice.
+            }
+            #endif
             contentTopOffsetConstraint.constant = heightOffset
             contentBottomOffsetConstraint.constant = 0
-            minimumHeightConstraint.constant = statusBarSize.height > 0 ? minimumHeight : 40
+            minimumHeightConstraint.constant = heightOffset > 0 ? minimumHeight : 40
         } else {
             var bottomSpacing: CGFloat = 0
             if #available(iOS 11.0, *) {
@@ -351,12 +360,16 @@ open class Banner: UIView {
         view.addSubview(self)
         forceUpdates()
         let (damping, velocity) = self.springiness.springValues
+        #if os(xrOS)
+        oldStatusBarStyle = nil
+        #else
         if adjustsStatusBarStyle {
             oldStatusBarStyle = UIApplication.shared.statusBarStyle
             UIApplication.shared.setStatusBarStyle(preferredStatusBarStyle, animated: true)
         } else {
             oldStatusBarStyle = nil
         }
+        #endif
         UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .allowUserInteraction, animations: {
             self.bannerState = .showing
         }, completion: { finished in
@@ -373,9 +386,11 @@ open class Banner: UIView {
         let (damping, velocity) = self.springiness.springValues
         UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .allowUserInteraction, animations: {
             self.bannerState = .hidden
+            #if !os(xrOS)
             if self.adjustsStatusBarStyle, let oldStatusBarStyle = self.oldStatusBarStyle {
                 UIApplication.shared.setStatusBarStyle(oldStatusBarStyle, animated: true)
             }
+            #endif
         }, completion: { finished in
             self.bannerState = .gone
             self.removeFromSuperview()
